@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import kotlinx.coroutines.flow.collect
 import org.m0skit0.android.inhaler.domain.history.PunchHistoryInteractor
 
 class PunchHistoryViewModel
@@ -12,6 +13,8 @@ class PunchHistoryViewModel
 ) : ViewModel() {
 
     val punches: LiveData<List<PunchHistoryEntry>> = liveData {
-        interactor.history().map { it.toPunchHistoryEntry() }.let { emit(it) }
+        interactor.history().collect { list ->
+            list.map { it.toPunchHistoryEntry() }.let { emit(it) }
+        }
     }
 }
