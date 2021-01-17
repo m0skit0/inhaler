@@ -5,6 +5,6 @@
     app:startDestination="@id/punchFragment">
     <fragment
         android:id="@+id/punchFragment"
-        android:name="org.m0skit0.android.inhaler.view.PunchFragment"
+        android:name="org.m0skit0.android.inhaler.view.punch.PunchFragment"
         android:label="PunchFragment" />
 </navigation>
