@@ -20,14 +20,18 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
 
     private val viewModel: PunchHistoryViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
         inflater.inflate(R.layout.fragment_history, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.punches.observe(viewLifecycleOwner) {
-            view.findViewById<RecyclerView>(R.id.recycler_punches).run {
-                adapter = PunchHistoryAdapter(it)
-            }
+            view
+                .findViewById<RecyclerView>(R.id.recycler_punches)
+                .adapter = PunchHistoryAdapter(it)
         }
     }
 
@@ -43,7 +47,7 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
             holder.entry.text = punches[position].toText()
         }
 
-        override fun getItemCount(): Int  = punches.size
+        override fun getItemCount(): Int = punches.size
 
         private fun PunchHistoryEntry.toText(): String = time.toString()
     }
