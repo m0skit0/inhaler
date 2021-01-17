@@ -17,7 +17,7 @@ class PunchFragment : Fragment(), TitledFragment {
 
     override val title: String by lazy { InhalerApplication.instance.getString(R.string.punch) }
 
-    private val viewModel: PunchFragmentViewModel by viewModels()
+    private val viewModel: PunchViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_punch, container, false)

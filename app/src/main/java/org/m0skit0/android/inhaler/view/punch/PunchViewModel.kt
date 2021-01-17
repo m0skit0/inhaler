@@ -5,12 +5,12 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.m0skit0.android.inhaler.domain.Punch
-import org.m0skit0.android.inhaler.domain.PunchInteractor
+import org.m0skit0.android.inhaler.domain.punch.PunchInteractor
 import java.util.*
 
-class PunchFragmentViewModel
+class PunchViewModel
 @ViewModelInject constructor(
-        private val interactor: PunchInteractor
+    private val interactor: PunchInteractor
 ) : ViewModel() {
 
     fun onPunchClicked() {

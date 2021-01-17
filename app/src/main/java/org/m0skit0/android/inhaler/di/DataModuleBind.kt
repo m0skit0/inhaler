@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-abstract class DataModuleBinder {
+abstract class DataModuleBind {
     @Binds
     abstract fun bindPunchRepository(repository: PunchRepositoryImpl): PunchRepository
 }
