@@ -6,6 +6,11 @@ import androidx.room.RoomDatabase
 private const val VERSION = 1
 
 @Database(entities = [PunchEntity::class], version = VERSION)
-abstract class Database : RoomDatabase() {
+abstract class InhalerDatabase : RoomDatabase() {
+
+    companion object {
+        const val NAME = "database"
+    }
+
     abstract fun punchDao(): PunchDao
 }

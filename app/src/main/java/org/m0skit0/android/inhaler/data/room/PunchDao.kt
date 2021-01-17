@@ -8,8 +8,8 @@ import androidx.room.Query
 interface PunchDao {
 
     @Query("SELECT * FROM punch")
-    fun all(): List<PunchEntity>
+    suspend fun all(): List<PunchEntity>
 
     @Insert
-    fun insert(vararg punchEntity: PunchEntity)
+    suspend fun insert(vararg punchEntity: PunchEntity)
 }
