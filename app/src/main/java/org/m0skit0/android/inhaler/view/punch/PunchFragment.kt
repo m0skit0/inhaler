@@ -16,9 +16,11 @@ class PunchFragment : Fragment() {
     private val viewModel: PunchFragmentViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_punch, container, false).apply {
-                initializeViews()
-            }
+            inflater.inflate(R.layout.fragment_punch, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        view.initializeViews()
+    }
 
     private fun View.initializeViews() {
         findViewById<Button>(R.id.punch).setOnClickListener {

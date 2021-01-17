@@ -2,9 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/punchFragment">
+    app:startDestination="@id/pagerFragment">
     <fragment
-        android:id="@+id/punchFragment"
-        android:name="org.m0skit0.android.inhaler.view.punch.PunchFragment"
-        android:label="PunchFragment" />
+        android:id="@+id/pagerFragment"
+        android:name="org.m0skit0.android.inhaler.view.PagerFragment"
+        android:label="PagerFragment" />
 </navigation>

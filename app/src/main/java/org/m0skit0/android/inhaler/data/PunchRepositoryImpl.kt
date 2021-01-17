@@ -13,8 +13,5 @@ class PunchRepositoryImpl
 
     override suspend fun storePunch(punch: PunchData) {
         punchDao.insert(punch.toEntity())
-        punchDao.all().let {
-            println("Punches: $it")
-        }
     }
 }
