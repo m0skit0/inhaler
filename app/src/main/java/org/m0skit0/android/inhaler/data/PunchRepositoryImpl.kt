@@ -16,5 +16,5 @@ class PunchRepositoryImpl
         punchDao.insert(punch.toEntity())
     }
 
-    override suspend fun allPunches(): Flow<List<PunchData>> = punchDao.all().map { list -> list.map { it.toData() } }
+    override fun allPunches(): Flow<List<PunchData>> = punchDao.all().map { list -> list.map { it.toData() } }
 }

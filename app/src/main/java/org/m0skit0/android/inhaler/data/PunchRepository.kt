@@ -4,5 +4,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PunchRepository {
     suspend fun storePunch(punch: PunchData)
-    suspend fun allPunches(): Flow<List<PunchData>>
+    fun allPunches(): Flow<List<PunchData>>
 }

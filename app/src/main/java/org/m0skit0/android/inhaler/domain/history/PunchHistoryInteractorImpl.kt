@@ -11,5 +11,5 @@ class PunchHistoryInteractorImpl
 @Inject constructor(
     private val repository: PunchRepository
 ): PunchHistoryInteractor {
-    override suspend fun history(): Flow<List<Punch>> = repository.allPunches().map { list -> list.map { it.toPunch() } }
+    override fun history(): Flow<List<Punch>> = repository.allPunches().map { list -> list.map { it.toPunch() } }
 }
