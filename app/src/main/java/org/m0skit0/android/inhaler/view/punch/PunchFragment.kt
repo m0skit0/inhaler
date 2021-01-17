@@ -8,10 +8,14 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
+import org.m0skit0.android.inhaler.view.TitledFragment
 
 @AndroidEntryPoint
-class PunchFragment : Fragment() {
+class PunchFragment : Fragment(), TitledFragment {
+
+    override val title: String by lazy { InhalerApplication.instance.getString(R.string.punch) }
 
     private val viewModel: PunchFragmentViewModel by viewModels()
 

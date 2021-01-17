@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import org.m0skit0.android.inhaler.R
+import org.m0skit0.android.inhaler.view.history.PunchHistoryFragment
 import org.m0skit0.android.inhaler.view.punch.PunchFragment
 
 class PagerFragment : Fragment() {
@@ -18,19 +20,25 @@ class PagerFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        view.findViewById<ViewPager>(R.id.pager).apply {
-            adapter = PagerFragmentAdapter(childFragmentManager)
+        with (view) {
+            val pager = findViewById<ViewPager>(R.id.pager).apply {
+                adapter = PagerFragmentAdapter(childFragmentManager)
+            }
+            findViewById<TabLayout>(R.id.tabs).setupWithViewPager(pager)
         }
     }
 
     class PagerFragmentAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-        private val fragments = arrayOf(
-            PunchFragment()
+        private val fragments: Array<Fragment> = arrayOf(
+            PunchFragment(),
+            PunchHistoryFragment()
         )
 
         override fun getCount(): Int = fragments.size
 
         override fun getItem(position: Int): Fragment = fragments[position]
+
+        override fun getPageTitle(position: Int): CharSequence = (fragments[position] as TitledFragment).title
     }
 }
