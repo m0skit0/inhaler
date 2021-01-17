@@ -12,6 +12,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class PunchHistoryFragment : Fragment(), TitledFragment {
@@ -37,6 +39,10 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
 
     class PunchHistoryAdapter(private val punches: List<PunchHistoryEntry>) : RecyclerView.Adapter<PunchHistoryViewHolder>() {
 
+        companion object {
+            private val DATE_FORMATTER = SimpleDateFormat("EEE kk:mm dd-MM-yyyy", Locale.US)
+        }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PunchHistoryViewHolder =
             LayoutInflater
                 .from(parent.context)
@@ -49,7 +55,7 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
 
         override fun getItemCount(): Int = punches.size
 
-        private fun PunchHistoryEntry.toText(): String = time.toString()
+        private fun PunchHistoryEntry.toText(): String = DATE_FORMATTER.format(time)
     }
 
     class PunchHistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
