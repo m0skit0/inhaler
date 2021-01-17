@@ -8,6 +8,6 @@ class PunchInteractorImpl
         private val repository: PunchRepository
 ) : PunchInteractor {
     override suspend fun punch(punch: Punch) {
-        repository.storePunch(punch.toEntity())
+        repository.storePunch(punch.toData())
     }
 }
