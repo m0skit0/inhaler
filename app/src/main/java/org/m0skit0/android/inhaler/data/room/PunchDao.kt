@@ -7,7 +7,7 @@ import androidx.room.Query
 @Dao
 interface PunchDao {
 
-    @Query("SELECT * FROM punch")
+    @Query("SELECT * FROM punch ORDER BY timestamp DESC")
     suspend fun all(): List<PunchEntity>
 
     @Insert
