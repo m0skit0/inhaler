@@ -9,15 +9,13 @@ class StatisticsCalculatorImpl @Inject constructor() : StatisticsCalculator {
     override fun List<PunchData>.total(): Int = size
 
     override fun List<PunchData>.dailyAverage(): Double =
-        groupByYearMonthDay().punchesPerDay().averageNoNaN()
+        groupByYearMonthDay().punchesPerDay().averageOrZero()
 
-    override fun List<PunchData>.dailyMaximum(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun List<PunchData>.dailyMaximum(): Int =
+        groupByYearMonthDay().punchesPerDay().maxByOrNull { it } ?: 0
 
-    override fun List<PunchData>.monthlyAverage(): Double {
-        TODO("Not yet implemented")
-    }
+    override fun List<PunchData>.monthlyAverage(): Double =
+        groupByYearMonth().punchesPerMonth().averageOrZero()
 
     private fun Date.toCalendar(): Calendar = Calendar.getInstance().apply {
         time = this@toCalendar
@@ -47,7 +45,11 @@ class StatisticsCalculatorImpl @Inject constructor() : StatisticsCalculator {
             .flatMap { it.value.values.toList() }
             .flatten()
 
-    private fun Iterable<Int>.averageNoNaN() = average()
+    private fun Map<Int, Map<Int, List<PunchData>>>.punchesPerMonth(): List<Int> =
+        mapValues { it.value.mapValues { it.value.size } }
+            .flatMap { it.value.values.toList() }
+
+    private fun Iterable<Int>.averageOrZero() = average()
         .run {
             if (isNaN()) 0.0 else this
         }
