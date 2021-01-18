@@ -11,13 +11,21 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import org.m0skit0.android.inhaler.data.PunchRepository
 import org.m0skit0.android.inhaler.data.PunchRepositoryImpl
 import org.m0skit0.android.inhaler.data.room.InhalerDatabase
+import org.m0skit0.android.inhaler.data.stats.StatisticsCalculator
+import org.m0skit0.android.inhaler.data.stats.StatisticsCalculatorImpl
 import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
 abstract class DataModuleBind {
+
     @Binds
+    @Singleton
     abstract fun bindPunchRepository(repository: PunchRepositoryImpl): PunchRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindStatisticsCalculator(repository: StatisticsCalculatorImpl): StatisticsCalculator
 }
 
 @Module
