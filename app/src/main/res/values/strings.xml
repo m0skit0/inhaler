@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Inhaler</string>
     <string name="punch">Punch</string>
-    <string name="average">Average</string>
-    <string name="maximum">Maximum</string>
+    <string name="average_daily">Daily Average</string>
+    <string name="maximum">Daily Maximum</string>
     <string name="history">History</string>
+    <string name="average_monthly">Monthly Average</string>
+    <string name="total">Total Punches</string>
+    <string name="statistics">Statistics</string>
 </resources>

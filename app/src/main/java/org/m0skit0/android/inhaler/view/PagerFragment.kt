@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayout
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.history.PunchHistoryFragment
 import org.m0skit0.android.inhaler.view.punch.PunchFragment
+import org.m0skit0.android.inhaler.view.stats.PunchStatisticsFragment
 
 class PagerFragment : Fragment() {
 
@@ -32,7 +33,8 @@ class PagerFragment : Fragment() {
 
         private val fragments: Array<Fragment> = arrayOf(
             PunchFragment(),
-            PunchHistoryFragment()
+            PunchHistoryFragment(),
+            PunchStatisticsFragment()
         )
 
         override fun getCount(): Int = fragments.size
