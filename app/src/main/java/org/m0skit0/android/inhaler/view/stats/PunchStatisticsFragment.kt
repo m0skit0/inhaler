@@ -37,7 +37,7 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
         total = findViewById(R.id.total_value)
         dailyAverage = findViewById(R.id.average_daily_value)
         dailyMaximum = findViewById(R.id.maximum_daily_value)
-        monthlyAverage = findViewById(R.id.average_monthly)
+        monthlyAverage = findViewById(R.id.average_monthly_value)
     }
 
     private fun observeLiveData() {

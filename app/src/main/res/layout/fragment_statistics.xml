@@ -84,7 +84,7 @@
             android:text="@string/average_monthly" />
 
         <TextView
-            android:id="@+id/maximum_value"
+            android:id="@+id/average_monthly_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
