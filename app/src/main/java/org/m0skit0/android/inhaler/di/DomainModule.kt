@@ -8,7 +8,8 @@ import org.m0skit0.android.inhaler.domain.history.PunchHistoryInteractor
 import org.m0skit0.android.inhaler.domain.history.PunchHistoryInteractorImpl
 import org.m0skit0.android.inhaler.domain.punch.PunchInteractor
 import org.m0skit0.android.inhaler.domain.punch.PunchInteractorImpl
-import org.m0skit0.android.inhaler.domain.stats.*
+import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractor
+import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractorImpl
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -21,14 +22,5 @@ abstract class DomainModule {
     abstract fun bindPunchHistoryInteractor(interactor: PunchHistoryInteractorImpl): PunchHistoryInteractor
 
     @Binds
-    abstract fun bindPunchDailyAverageInteractor(interactor: PunchDailyAverageInteractorImpl): PunchStatisticsInteractor
-
-    @Binds
-    abstract fun bindPunchDailyMaximumInteractor(interactor: PunchDailyMaximumInteractorImpl): PunchDailyMaximumInteractor
-
-    @Binds
-    abstract fun bindPunchMonthlyAverageInteractor(interactor: PunchMonthlyAverageInteractorImpl): PunchMonthlyAverageInteractor
-
-    @Binds
-    abstract fun bindPunchTotalInteractor(interactor: PunchTotalInteractorImpl): PunchTotalInteractor
+    abstract fun bindPunchStatisticsInteractor(interactor: PunchStatisticsInteractorImpl): PunchStatisticsInteractor
 }
