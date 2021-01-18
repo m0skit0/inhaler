@@ -12,7 +12,7 @@ class PunchRepositoryImpl
 
     private val punchDao = database.punchDao()
 
-    override suspend fun storePunch(punch: PunchData) {
+    override suspend fun punch(punch: PunchData) {
         punchDao.insert(punch.toEntity())
     }
 
