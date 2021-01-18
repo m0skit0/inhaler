@@ -1,4 +1,4 @@
-package org.m0skit0.android.inhaler.domain
+package org.m0skit0.android.inhaler.domain.model
 
 import org.m0skit0.android.inhaler.data.PunchData
 import java.util.*

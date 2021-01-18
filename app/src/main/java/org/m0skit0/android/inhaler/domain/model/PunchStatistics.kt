@@ -1,4 +1,4 @@
-package org.m0skit0.android.inhaler.view.stats
+package org.m0skit0.android.inhaler.domain.model
 
 data class PunchStatistics(
     val total: Int,
