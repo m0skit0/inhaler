@@ -12,8 +12,10 @@ class PunchHistoryViewModel
     interactor: PunchHistoryInteractor
 ) : ViewModel() {
 
-    val punches: LiveData<List<PunchHistoryEntry>> =
+    val punches: LiveData<List<PunchHistoryEntry>> by lazy {
         interactor.history().map { list ->
             list.map { it.toPunchHistoryEntry() }
         }.asLiveData()
+    }
+
 }
