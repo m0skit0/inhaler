@@ -9,13 +9,13 @@ class StatisticsCalculatorImpl @Inject constructor() : StatisticsCalculator {
     override fun List<PunchData>.total(): Int = size
 
     override fun List<PunchData>.dailyAverage(): Double =
-        groupByDay().dailyAverage()
+        groupByYearMonthDay().punchesPerDay().averageNoNaN()
 
     override fun List<PunchData>.dailyMaximum(): Int {
         TODO("Not yet implemented")
     }
 
-    override fun List<PunchData>.monthlyAverage(): Int {
+    override fun List<PunchData>.monthlyAverage(): Double {
         TODO("Not yet implemented")
     }
 
@@ -23,8 +23,8 @@ class StatisticsCalculatorImpl @Inject constructor() : StatisticsCalculator {
         time = this@toCalendar
     }
 
-    private fun List<PunchData>.groupByDay(): Map<Int, Map<Int, Map<Int, List<PunchData>>>> =
-        groupByMonth().mapValues {
+    private fun List<PunchData>.groupByYearMonthDay(): Map<Int, Map<Int, Map<Int, List<PunchData>>>> =
+        groupByYearMonth().mapValues {
             it.value.mapValues {
                 it.value.groupBy {
                     it.time.toCalendar()[Calendar.DAY_OF_MONTH]
@@ -33,7 +33,7 @@ class StatisticsCalculatorImpl @Inject constructor() : StatisticsCalculator {
             }
         }
 
-    private fun List<PunchData>.groupByMonth(): Map<Int, Map<Int, List<PunchData>>> =
+    private fun List<PunchData>.groupByYearMonth(): Map<Int, Map<Int, List<PunchData>>> =
         groupBy { it.time.toCalendar()[Calendar.YEAR] }
             .mapValues {
                 it.value.groupBy {
@@ -41,10 +41,14 @@ class StatisticsCalculatorImpl @Inject constructor() : StatisticsCalculator {
                 }
             }
 
-    private fun Map<Int, Map<Int, Map<Int, List<PunchData>>>>.dailyAverage(): Double =
+    private fun Map<Int, Map<Int, Map<Int, List<PunchData>>>>.punchesPerDay(): List<Int> =
         mapValues { it.value.mapValues { it.value.mapValues { it.value.size } } }
             .mapValues { it.value.mapValues { it.value.values.toList() } }
             .flatMap { it.value.values.toList() }
             .flatten()
-            .average()
+
+    private fun Iterable<Int>.averageNoNaN() = average()
+        .run {
+            if (isNaN()) 0.0 else this
+        }
 }
