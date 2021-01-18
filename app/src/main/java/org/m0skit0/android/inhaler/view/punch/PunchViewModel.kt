@@ -4,7 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.m0skit0.android.inhaler.domain.Punch
+import org.m0skit0.android.inhaler.domain.model.Punch
 import org.m0skit0.android.inhaler.domain.punch.PunchInteractor
 import java.util.*
 
