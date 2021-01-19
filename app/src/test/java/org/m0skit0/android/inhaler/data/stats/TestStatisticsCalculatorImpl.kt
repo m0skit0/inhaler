@@ -21,7 +21,7 @@ class TestStatisticsCalculatorImpl {
         "12/12/2020".toPunchData(),
     )
 
-    private fun onCalculator(block: StatisticsCalculatorImpl.() -> Unit) {
+    private fun withCalculator(block: StatisticsCalculatorImpl.() -> Unit) {
         StatisticsCalculatorImpl().run(block)
     }
 
@@ -31,56 +31,56 @@ class TestStatisticsCalculatorImpl {
 
     @Test
     fun `when call total on an empty list should return 0`() {
-        onCalculator {
+        withCalculator {
             emptyList<PunchData>().total() shouldBe 0
         }
     }
 
     @Test
     fun `when call total should return total number of elements in the list`() {
-        onCalculator {
+        withCalculator {
             punchDataList.total() shouldBe punchDataList.size
         }
     }
 
     @Test
     fun `when call dailyAverage on an empty list should return 0`() {
-        onCalculator {
+        withCalculator {
             emptyList<PunchData>().dailyAverage() shouldBe 0.0
         }
     }
 
     @Test
     fun `when call dailyAverage on an list should return daily average`() {
-        onCalculator {
+        withCalculator {
             punchDataList.dailyAverage() shouldBe 9.0/6.0
         }
     }
 
     @Test
     fun `when call dailyMaximum on an empty list should return 0`() {
-        onCalculator {
+        withCalculator {
             emptyList<PunchData>().dailyMaximum() shouldBe 0
         }
     }
 
     @Test
     fun `when call dailyMaximum on an list should return 0`() {
-        onCalculator {
+        withCalculator {
             punchDataList.dailyMaximum() shouldBe 3
         }
     }
 
     @Test
     fun `when call monthlyAverage on an empty list should return 0`() {
-        onCalculator {
+        withCalculator {
             emptyList<PunchData>().monthlyAverage() shouldBe 0.0
         }
     }
 
     @Test
     fun `when call monthlyAverage on an list should return 0`() {
-        onCalculator {
+        withCalculator {
             punchDataList.monthlyAverage() shouldBe 9.0/5.0
         }
     }
