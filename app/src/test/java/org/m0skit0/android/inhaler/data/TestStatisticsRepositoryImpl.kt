@@ -1,13 +1,11 @@
 package org.m0skit0.android.inhaler.data
 
-import io.mockk.MockKAnnotations
-import io.mockk.every
+import io.mockk.*
 import io.mockk.impl.annotations.MockK
-import io.mockk.mockkStatic
-import io.mockk.verify
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.m0skit0.android.inhaler.data.model.PunchData
@@ -27,6 +25,11 @@ class TestStatisticsRepositoryImpl {
     @Before
     fun setup() {
         MockKAnnotations.init(this)
+    }
+
+    @After
+    fun clean() {
+        clearAllMocks()
     }
 
     private fun withRepository(block: StatisticsRepository.() -> Unit) {

@@ -32,16 +32,16 @@ class TestAverage {
 
     @Test
     fun `when call dailyAverage on an list should return daily average`() {
-            punchDataList.dailyAverage() shouldBe 9.0/6.0
+        punchDataList.dailyAverage() shouldBe 9.0 / 6.0
     }
 
     @Test
     fun `when call monthlyAverage on an empty list should return 0`() {
-            emptyList<PunchData>().monthlyAverage() shouldBe 0.0
+        emptyList<PunchData>().monthlyAverage() shouldBe 0.0
     }
 
     @Test
     fun `when call monthlyAverage on an list should return 0`() {
-            punchDataList.monthlyAverage() shouldBe 9.0/5.0
+        punchDataList.monthlyAverage() shouldBe 9.0 / 5.0
     }
 }

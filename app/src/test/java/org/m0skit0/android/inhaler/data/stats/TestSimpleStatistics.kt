@@ -27,21 +27,21 @@ class TestSimpleStatistics {
 
     @Test
     fun `when call total on an empty list should return 0`() {
-            emptyList<PunchData>().total() shouldBe 0
+        emptyList<PunchData>().total() shouldBe 0
     }
 
     @Test
     fun `when call total should return total number of elements in the list`() {
-            punchDataList.total() shouldBe punchDataList.size
+        punchDataList.total() shouldBe punchDataList.size
     }
 
     @Test
     fun `when call dailyMaximum on an empty list should return 0`() {
-            emptyList<PunchData>().dailyMaximum() shouldBe 0
+        emptyList<PunchData>().dailyMaximum() shouldBe 0
     }
 
     @Test
-    fun `when call dailyMaximum on an list should return 0`() {
-            punchDataList.dailyMaximum() shouldBe 3
+    fun `when call dailyMaximum on an list should return 3`() {
+        punchDataList.dailyMaximum() shouldBe 3
     }
 }
