@@ -21,21 +21,15 @@ fun List<PunchData>.groupByYearMonth(): Map<Int, Map<Int, List<PunchData>>> =
             }
         }
 
-private fun Date.toCalendar(): Calendar = Calendar.getInstance().apply {
-    time = this@toCalendar
-}
-
 fun Map<Int, Map<Int, Map<Int, List<PunchData>>>>.punchesPerDay(): List<Int> =
     mapValues { it.value.mapValues { it.value.mapValues { it.value.size } } }
         .mapValues { it.value.mapValues { it.value.values.toList() } }
         .flatMap { it.value.values.toList() }
         .flatten()
 
+fun List<PunchData>.groupByDay(): Map<Date, Int> =
+    groupBy { it.time.toDayOnly() }.mapValues { it.value.size }
+
 fun Map<Int, Map<Int, List<PunchData>>>.punchesPerMonth(): List<Int> =
     mapValues { it.value.mapValues { it.value.size } }
         .flatMap { it.value.values.toList() }
-
-fun Iterable<Int>.averageOrZero() = average()
-    .run {
-        if (isNaN()) 0.0 else this
-    }

@@ -13,10 +13,6 @@ import org.m0skit0.android.inhaler.data.punch.PunchRepositoryImpl
 import org.m0skit0.android.inhaler.data.punch.StatisticsRepository
 import org.m0skit0.android.inhaler.data.punch.StatisticsRepositoryImpl
 import org.m0skit0.android.inhaler.data.room.InhalerDatabase
-import org.m0skit0.android.inhaler.data.stats.AverageCalculator
-import org.m0skit0.android.inhaler.data.stats.AverageCalculatorImpl
-import org.m0skit0.android.inhaler.data.stats.SimpleStatisticsCalculator
-import org.m0skit0.android.inhaler.data.stats.SimpleStatisticsCalculatorImpl
 import javax.inject.Singleton
 
 @Module
@@ -26,14 +22,6 @@ abstract class DataModuleBind {
     @Binds
     @Singleton
     abstract fun bindPunchRepository(repository: PunchRepositoryImpl): PunchRepository
-
-    @Binds
-    @Singleton
-    abstract fun bindStatisticsCalculator(repository: SimpleStatisticsCalculatorImpl): SimpleStatisticsCalculator
-
-    @Binds
-    @Singleton
-    abstract fun bindAverageCalculator(repository: AverageCalculatorImpl): AverageCalculator
 
     @Binds
     @Singleton
