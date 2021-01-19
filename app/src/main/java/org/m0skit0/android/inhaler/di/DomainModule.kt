@@ -10,6 +10,8 @@ import org.m0skit0.android.inhaler.domain.punch.PunchInteractor
 import org.m0skit0.android.inhaler.domain.punch.PunchInteractorImpl
 import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractor
 import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractorImpl
+import org.m0skit0.android.inhaler.domain.stats.PunchesByDayInteractor
+import org.m0skit0.android.inhaler.domain.stats.PunchesByDayInteractorImpl
 import javax.inject.Singleton
 
 @Module
@@ -27,4 +29,8 @@ abstract class DomainModule {
     @Binds
     @Singleton
     abstract fun bindPunchStatisticsInteractor(interactor: PunchStatisticsInteractorImpl): PunchStatisticsInteractor
+
+    @Binds
+    @Singleton
+    abstract fun bindPunchesByDay(interactor: PunchesByDayInteractorImpl): PunchesByDayInteractor
 }
