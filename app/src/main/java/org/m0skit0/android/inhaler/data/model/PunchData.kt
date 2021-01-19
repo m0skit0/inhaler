@@ -1,4 +1,4 @@
-package org.m0skit0.android.inhaler.data
+package org.m0skit0.android.inhaler.data.model
 
 import org.m0skit0.android.inhaler.data.room.PunchEntity
 import java.util.*

@@ -7,10 +7,11 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
+import org.m0skit0.android.inhaler.data.punch.PunchRepositoryImpl
 import org.m0skit0.android.inhaler.data.room.InhalerDatabase
 import org.m0skit0.android.inhaler.data.room.PunchDao
 import org.m0skit0.android.inhaler.data.room.PunchEntity
-import org.m0skit0.android.inhaler.data.stats.StatisticsCalculator
+import org.m0skit0.android.inhaler.data.stats.SimpleStatisticsCalculator
 import java.util.*
 
 class TestPunchRepositoryImpl {
@@ -22,7 +23,7 @@ class TestPunchRepositoryImpl {
     private lateinit var mockPunchDao: PunchDao
 
     @MockK
-    private lateinit var mockStatisticsCalculator: StatisticsCalculator
+    private lateinit var mockSimpleStatisticsCalculator: SimpleStatisticsCalculator
 
     private val punchData = PunchData(Date())
 
@@ -37,7 +38,7 @@ class TestPunchRepositoryImpl {
     }
 
     private fun withRepository(block: PunchRepositoryImpl.() -> Unit) {
-        PunchRepositoryImpl(mockDatabase, mockStatisticsCalculator).run(block)
+        PunchRepositoryImpl(mockDatabase, mockSimpleStatisticsCalculator).run(block)
     }
 
     @Test
@@ -69,17 +70,17 @@ class TestPunchRepositoryImpl {
     @Test
     fun `when statistics should calculate statistics`() {
         every { mockPunchDao.all() } returns flow { emit(emptyList<PunchEntity>()) }
-        every { mockStatisticsCalculator.run { any<List<PunchData>>().total() } } returns 0
-        every { mockStatisticsCalculator.run { any<List<PunchData>>().dailyAverage() } } returns 0.0
-        every { mockStatisticsCalculator.run { any<List<PunchData>>().dailyMaximum() } } returns 0
-        every { mockStatisticsCalculator.run { any<List<PunchData>>().monthlyAverage() } } returns 0.0
+        every { mockSimpleStatisticsCalculator.run { any<List<PunchData>>().total() } } returns 0
+        every { mockSimpleStatisticsCalculator.run { any<List<PunchData>>().dailyAverage() } } returns 0.0
+        every { mockSimpleStatisticsCalculator.run { any<List<PunchData>>().dailyMaximum() } } returns 0
+        every { mockSimpleStatisticsCalculator.run { any<List<PunchData>>().monthlyAverage() } } returns 0.0
         withRepository {
             runBlocking {
                 statistics().collect()
             }
         }
         verify {
-            mockStatisticsCalculator.run {
+            mockSimpleStatisticsCalculator.run {
                 emptyList<PunchData>().total()
                 emptyList<PunchData>().dailyAverage()
                 emptyList<PunchData>().dailyMaximum()

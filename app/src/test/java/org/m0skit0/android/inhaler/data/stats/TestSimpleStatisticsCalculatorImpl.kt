@@ -1,11 +1,10 @@
 package org.m0skit0.android.inhaler.data.stats
 
-import io.kotlintest.shouldBe
 import org.junit.Test
 import org.m0skit0.android.inhaler.data.PunchData
 import java.text.SimpleDateFormat
 
-class TestStatisticsCalculatorImpl {
+class TestSimpleStatisticsCalculatorImpl {
 
     private val dateFormatter = SimpleDateFormat("dd/MM/yyyy")
 
@@ -21,8 +20,8 @@ class TestStatisticsCalculatorImpl {
         "12/12/2020".toPunchData(),
     )
 
-    private fun withCalculator(block: StatisticsCalculatorImpl.() -> Unit) {
-        StatisticsCalculatorImpl().run(block)
+    private fun withCalculator(block: SimpleStatisticsCalculatorImpl.() -> Unit) {
+        SimpleStatisticsCalculatorImpl().run(block)
     }
 
     private fun String.toPunchData(): PunchData = dateFormatter.parse(this)!!.let {

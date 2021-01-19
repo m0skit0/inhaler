@@ -8,11 +8,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import org.m0skit0.android.inhaler.data.PunchRepository
-import org.m0skit0.android.inhaler.data.PunchRepositoryImpl
+import org.m0skit0.android.inhaler.data.punch.PunchRepository
+import org.m0skit0.android.inhaler.data.punch.PunchRepositoryImpl
 import org.m0skit0.android.inhaler.data.room.InhalerDatabase
-import org.m0skit0.android.inhaler.data.stats.StatisticsCalculator
-import org.m0skit0.android.inhaler.data.stats.StatisticsCalculatorImpl
+import org.m0skit0.android.inhaler.data.stats.SimpleStatisticsCalculator
+import org.m0skit0.android.inhaler.data.stats.SimpleStatisticsCalculatorImpl
 import javax.inject.Singleton
 
 @Module
@@ -25,7 +25,7 @@ abstract class DataModuleBind {
 
     @Binds
     @Singleton
-    abstract fun bindStatisticsCalculator(repository: StatisticsCalculatorImpl): StatisticsCalculator
+    abstract fun bindStatisticsCalculator(repository: SimpleStatisticsCalculatorImpl): SimpleStatisticsCalculator
 }
 
 @Module
