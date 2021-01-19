@@ -10,12 +10,7 @@ import org.junit.Before
 import org.junit.Test
 import org.m0skit0.android.inhaler.data.model.PunchData
 import org.m0skit0.android.inhaler.data.punch.PunchRepository
-import org.m0skit0.android.inhaler.data.punch.StatisticsRepository
-import org.m0skit0.android.inhaler.data.punch.StatisticsRepositoryImpl
-import org.m0skit0.android.inhaler.data.stats.dailyAverage
-import org.m0skit0.android.inhaler.data.stats.dailyMaximum
-import org.m0skit0.android.inhaler.data.stats.monthlyAverage
-import org.m0skit0.android.inhaler.data.stats.total
+import org.m0skit0.android.inhaler.data.stats.*
 
 class TestStatisticsRepositoryImpl {
 

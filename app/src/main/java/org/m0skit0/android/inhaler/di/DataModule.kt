@@ -10,9 +10,9 @@ import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.m0skit0.android.inhaler.data.punch.PunchRepository
 import org.m0skit0.android.inhaler.data.punch.PunchRepositoryImpl
-import org.m0skit0.android.inhaler.data.punch.StatisticsRepository
-import org.m0skit0.android.inhaler.data.punch.StatisticsRepositoryImpl
 import org.m0skit0.android.inhaler.data.room.InhalerDatabase
+import org.m0skit0.android.inhaler.data.stats.StatisticsRepository
+import org.m0skit0.android.inhaler.data.stats.StatisticsRepositoryImpl
 import javax.inject.Singleton
 
 @Module

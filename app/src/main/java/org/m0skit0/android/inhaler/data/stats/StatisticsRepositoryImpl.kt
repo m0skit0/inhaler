@@ -1,9 +1,9 @@
-package org.m0skit0.android.inhaler.data.punch
+package org.m0skit0.android.inhaler.data.stats
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.m0skit0.android.inhaler.data.model.PunchStatisticsData
-import org.m0skit0.android.inhaler.data.stats.*
+import org.m0skit0.android.inhaler.data.punch.PunchRepository
 import java.util.*
 import javax.inject.Inject
 
