@@ -2,13 +2,16 @@ package org.m0skit0.android.inhaler.data.stats
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import org.m0skit0.android.inhaler.BuildConfig
 import org.m0skit0.android.inhaler.data.model.PunchStatisticsData
 import org.m0skit0.android.inhaler.data.punch.PunchRepository
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Named
 
 class StatisticsRepositoryImpl
 @Inject constructor(
+    @Named(BuildConfig.NAMED_PUNCH_REPOSITORY)
     private val punchRepository: PunchRepository,
 ) : StatisticsRepository {
 
