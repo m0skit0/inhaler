@@ -2,6 +2,7 @@ package org.m0skit0.android.inhaler.data.stats
 
 import org.m0skit0.android.inhaler.data.model.PunchData
 import java.text.SimpleDateFormat
+import java.util.*
 
 private val dateFormatter = SimpleDateFormat("dd/MM/yyyy")
 val punchDataList = listOf(
@@ -16,8 +17,8 @@ val punchDataList = listOf(
     "12/12/2020".toPunchData(),
 )
 
-fun String.toPunchData(): PunchData = dateFormatter.parse(this)!!.let {
-    PunchData(it)
-}
+fun String.toPunchData(): PunchData = PunchData(toDate())
 
 fun PunchData.toList() = listOf(this)
+
+fun String.toDate(): Date = dateFormatter.parse(this)!!
