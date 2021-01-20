@@ -19,6 +19,6 @@ val punchDataList = listOf(
 
 fun String.toPunchData(): PunchData = PunchData(toDate())
 
-fun PunchData.toList() = listOf(this)
-
 fun String.toDate(): Date = dateFormatter.parse(this)!!
+
+fun PunchData.toList() = listOf(this)
