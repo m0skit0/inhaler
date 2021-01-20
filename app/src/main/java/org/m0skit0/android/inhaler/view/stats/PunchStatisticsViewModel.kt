@@ -8,7 +8,8 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.coroutines.flow.map
-import org.m0skit0.android.inhaler.di.NAMED_MOCK_INTERACTOR
+import org.m0skit0.android.inhaler.di.NAMED_MOCK_PUNCHES_BY_DAY_INTERACTOR
+import org.m0skit0.android.inhaler.di.NAMED_MOCK_STATS_INTERACTOR
 import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractor
 import org.m0skit0.android.inhaler.domain.stats.PunchesByDayInteractor
 import java.util.*
@@ -16,8 +17,9 @@ import javax.inject.Named
 
 class PunchStatisticsViewModel
 @ViewModelInject constructor(
+    @Named(NAMED_MOCK_STATS_INTERACTOR)
     statisticsInteractor: PunchStatisticsInteractor,
-    @Named(NAMED_MOCK_INTERACTOR)
+    @Named(NAMED_MOCK_PUNCHES_BY_DAY_INTERACTOR)
     punchesByDayInteractor: PunchesByDayInteractor,
 ) : ViewModel() {
 

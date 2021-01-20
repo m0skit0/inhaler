@@ -13,7 +13,12 @@ import org.m0skit0.android.inhaler.data.punch.PunchRepositoryImpl
 import org.m0skit0.android.inhaler.data.room.InhalerDatabase
 import org.m0skit0.android.inhaler.data.stats.StatisticsRepository
 import org.m0skit0.android.inhaler.data.stats.StatisticsRepositoryImpl
+import org.m0skit0.android.inhaler.data.stats.StatisticsRepositoryMock
+import javax.inject.Named
 import javax.inject.Singleton
+
+const val NAMED_REAL_STATISTICS_REPOSITORY = "NAMED_DATABASE_REPOSITORY"
+const val NAMED_MOCK_STATISTICS_REPOSITORY = "NAMED_MOCK_REPOSITORY"
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -25,7 +30,13 @@ abstract class DataModuleBind {
 
     @Binds
     @Singleton
+    @Named(NAMED_REAL_STATISTICS_REPOSITORY)
     abstract fun bindStatisticsRepository(repository: StatisticsRepositoryImpl): StatisticsRepository
+
+    @Binds
+    @Singleton
+    @Named(NAMED_MOCK_STATISTICS_REPOSITORY)
+    abstract fun bindStatisticsRepositoryMock(repository: StatisticsRepositoryMock): StatisticsRepository
 }
 
 @Module

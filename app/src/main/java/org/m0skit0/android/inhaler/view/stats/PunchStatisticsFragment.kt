@@ -63,6 +63,7 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
         viewModel.punchesByDay.observe(viewLifecycleOwner) {
             with(chart) {
                 data = it
+                data.notifyDataChanged()
                 notifyDataSetChanged()
             }
         }
