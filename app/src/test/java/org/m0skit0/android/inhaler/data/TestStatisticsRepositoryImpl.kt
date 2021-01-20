@@ -32,7 +32,7 @@ class TestStatisticsRepositoryImpl {
     }
 
     @Test
-    fun `when statistics should calculate statistics`() {
+    fun `when call statistics should calculate statistics`() {
         every { mockPunchRepository.allPunches() } returns flow { emit(emptyList<PunchData>()) }
         mockkStatic("org.m0skit0.android.inhaler.data.stats.SimpleStatisticsKt")
         every { any<List<PunchData>>().total() } returns 0

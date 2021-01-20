@@ -40,7 +40,7 @@ class TestPunchRepositoryImpl {
     }
 
     @Test
-    fun `when punch should insert into database`() {
+    fun `when call punch should insert into database`() {
         coEvery { mockPunchDao.insert(any()) } just Runs
         withRepository {
             runBlocking {
@@ -53,7 +53,7 @@ class TestPunchRepositoryImpl {
     }
 
     @Test
-    fun `when allPunches should fetch punches from database`() {
+    fun `when call allPunches should fetch punches from database`() {
         every { mockPunchDao.all() } returns flow { emit(emptyList<PunchEntity>()) }
         withRepository {
             runBlocking {
