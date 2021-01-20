@@ -28,6 +28,19 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    flavorDimensions "dataSource"
+    productFlavors {
+        mock {
+            buildConfigField 'String', 'NAMED_PUNCH_REPOSITORY', '"NAMED_PUNCH_REPOSITORY_MOCK"'
+            buildConfigField 'String', 'NAMED_STATISTICS_REPOSITORY', '"NAMED_STATISTICS_REPOSITORY_MOCK"'
+        }
+        real {
+            buildConfigField 'String', 'NAMED_PUNCH_REPOSITORY', '"NAMED_PUNCH_REPOSITORY_REAL"'
+            buildConfigField 'String', 'NAMED_STATISTICS_REPOSITORY', '"NAMED_STATISTICS_REPOSITORY_REAL"'
+        }
+    }
+
 }
 
 dependencies {
