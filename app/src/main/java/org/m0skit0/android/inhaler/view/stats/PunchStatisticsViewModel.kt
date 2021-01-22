@@ -8,6 +8,8 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.coroutines.flow.map
+import org.m0skit0.android.inhaler.InhalerApplication
+import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractor
 import org.m0skit0.android.inhaler.domain.stats.PunchesByDayInteractor
 import java.util.*
@@ -29,9 +31,11 @@ class PunchStatisticsViewModel
             punchesByDay.entries.map { punchByDay ->
                 punchByDay.toEntry()
             }.let { entry ->
-                LineDataSet(entry, "Test").let { LineData(it) }
+                LineDataSet(entry, chartLabel).let { LineData(it) }
             }
         }.asLiveData()
+
+    private val chartLabel by lazy { InhalerApplication.instance.getString(R.string.chartLabel) }
 
     private fun Map.Entry<Date, Int>.toEntry(): Entry = Entry(key.toFloat(), value.toFloat())
 

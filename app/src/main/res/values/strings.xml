@@ -7,4 +7,5 @@
     <string name="average_monthly">Monthly Average</string>
     <string name="total">Total Punches</string>
     <string name="statistics">Statistics</string>
+    <string name="chartLabel">Punches</string>
 </resources>
