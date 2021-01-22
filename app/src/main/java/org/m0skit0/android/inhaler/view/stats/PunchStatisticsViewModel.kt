@@ -25,11 +25,11 @@ class PunchStatisticsViewModel
     }
 
     val punchesByDay: LiveData<LineData> =
-        punchesByDayInteractor.punchesByDay().map {
-            it.entries.map { it.toEntry() }.let {
-                LineDataSet(it, "Test").let {
-                    LineData(it)
-                }
+        punchesByDayInteractor.punchesByDay().map { punchesByDay ->
+            punchesByDay.entries.map { punchByDay ->
+                punchByDay.toEntry()
+            }.let { entry ->
+                LineDataSet(entry, "Test").let { LineData(it) }
             }
         }.asLiveData()
 

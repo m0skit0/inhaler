@@ -8,10 +8,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class PunchStatisticsFragment : Fragment(), TitledFragment {
@@ -47,7 +50,11 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
         dailyAverage = findViewById(R.id.average_daily_value)
         dailyMaximum = findViewById(R.id.maximum_daily_value)
         monthlyAverage = findViewById(R.id.average_monthly_value)
-        chart = findViewById(R.id.punches_per_day)
+        chart = findViewById<LineChart>(R.id.punches_per_day).configure()
+    }
+
+    private fun LineChart.configure(): LineChart = apply {
+        xAxis.valueFormatter = ChartXAxisValueFormatter
     }
 
     private fun observeStatistics() {
@@ -67,5 +74,16 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
                 notifyDataSetChanged()
             }
         }
+    }
+
+    private object ChartXAxisValueFormatter : ValueFormatter() {
+        private val DATE_FORMATTER = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+        override fun getFormattedValue(value: Float): String = Date(value.toLong()).run {
+            DATE_FORMATTER.format(this)
+        }
+    }
+
+    private object ChartYAxisValueFormatter : ValueFormatter() {
+        override fun getFormattedValue(value: Float): String = value.toInt().toString()
     }
 }
