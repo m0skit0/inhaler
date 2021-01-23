@@ -13,7 +13,7 @@ class TestAverage {
 
     @Test
     fun `when call dailyAverage on an list should return daily average`() {
-        punchDataList.dailyAverage() shouldBe 9.0 / 6.0
+        punchDataList.dailyAverage() shouldBe punchDataList.size.toDouble() / (31.0 + 21.0)
     }
 
     @Test
@@ -23,6 +23,6 @@ class TestAverage {
 
     @Test
     fun `when call monthlyAverage on an list should return monthly average`() {
-        punchDataList.monthlyAverage() shouldBe 9.0 / 5.0
+        punchDataList.monthlyAverage() shouldBe punchDataList.size.toDouble() / 2.0
     }
 }
