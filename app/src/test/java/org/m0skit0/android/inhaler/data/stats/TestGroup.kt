@@ -19,20 +19,14 @@ class TestGroup {
                     2020 to mapOf(
                         Calendar.JANUARY to mapOf(
                             1 to punchDataList.subList(0, 3),
-                            15 to punchDataList[3].toList(),
+                            3 to punchDataList[3].toList(),
                         ),
                         Calendar.FEBRUARY to mapOf(
-                            4 to punchDataList[4].toList()
-                        ),
-                        Calendar.APRIL to mapOf(
-                            7 to punchDataList.subList(5, 7)
-                        ),
-                        Calendar.AUGUST to mapOf(
-                            30 to punchDataList[7].toList()
-                        ),
-                        Calendar.DECEMBER to mapOf(
-                            12 to punchDataList[8].toList()
-                        ),
+                            4 to punchDataList[4].toList(),
+                            7 to punchDataList.subList(5, 7),
+                            20 to punchDataList[7].toList(),
+                            21 to punchDataList[8].toList(),
+                        )
                     )
                 )
     }
@@ -43,24 +37,19 @@ class TestGroup {
                 mapOf(
                     2020 to mapOf(
                         Calendar.JANUARY to punchDataList.subList(0, 4),
-                        Calendar.FEBRUARY to punchDataList[4].toList(),
-                        Calendar.APRIL to punchDataList.subList(5, 7),
-                        Calendar.AUGUST to punchDataList[7].toList(),
-                        Calendar.DECEMBER to punchDataList[8].toList()
+                        Calendar.FEBRUARY to punchDataList.subList(4, 9),
                     )
                 )
     }
 
     @Test
     fun `when call punchesPerDay should return list of punches per day`() {
-        punchDataList.groupByYearMonthDay().punchesPerDay() shouldBe
-                listOf(3, 1, 1, 2, 1, 1)
+        punchDataList.groupByYearMonthDay().punchesPerDay() shouldBe listOf(3, 1, 1, 2, 1, 1)
     }
 
     @Test
     fun `when call punchesPerMonth should return list of punches per month`() {
-        punchDataList.groupByYearMonth().punchesPerMonth() shouldBe
-                listOf(4, 1, 2, 1, 1)
+        punchDataList.groupByYearMonth().punchesPerMonth() shouldBe listOf(4, 5)
     }
 
     @Test

@@ -1,6 +1,10 @@
 package org.m0skit0.android.inhaler.data.stats
 
 import io.kotlintest.shouldBe
+import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
+import org.joda.time.Days
+import org.joda.time.Months
 import org.junit.Test
 import org.m0skit0.android.inhaler.data.model.PunchData
 
@@ -13,7 +17,12 @@ class TestAverage {
 
     @Test
     fun `when call dailyAverage on an list should return daily average`() {
-        punchDataList.dailyAverage() shouldBe punchDataList.size.toDouble() / (31.0 + 21.0)
+        val oldestPunch = DateTime(punchDataList[0].time, DateTimeZone.UTC)
+        val now = DateTime.now()
+        punchDataList.dailyAverage() shouldBe punchDataList.size.toDouble() / Days.daysBetween(
+            now,
+            oldestPunch
+        ).days
     }
 
     @Test
@@ -23,6 +32,11 @@ class TestAverage {
 
     @Test
     fun `when call monthlyAverage on an list should return monthly average`() {
-        punchDataList.monthlyAverage() shouldBe punchDataList.size.toDouble() / 2.0
+        val oldestPunch = DateTime(punchDataList[0].time, DateTimeZone.UTC)
+        val now = DateTime.now()
+        punchDataList.monthlyAverage() shouldBe punchDataList.size.toDouble() / Months.monthsBetween(
+            now,
+            oldestPunch
+        ).months
     }
 }
