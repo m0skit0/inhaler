@@ -72,6 +72,8 @@ dependencies {
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    implementation 'net.danlew:android.joda:2.10.9'
+
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'io.mockk:mockk:1.10.0'
     testImplementation 'io.kotlintest:kotlintest-runner-junit4:3.4.2'
