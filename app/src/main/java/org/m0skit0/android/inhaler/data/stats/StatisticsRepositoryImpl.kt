@@ -2,10 +2,10 @@ package org.m0skit0.android.inhaler.data.stats
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import org.joda.time.DateTime
 import org.m0skit0.android.inhaler.BuildConfig
 import org.m0skit0.android.inhaler.data.model.PunchStatisticsData
 import org.m0skit0.android.inhaler.data.punch.PunchRepository
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -27,7 +27,7 @@ class StatisticsRepositoryImpl
             }
         }
 
-    override fun punchesPerDay(): Flow<Map<Date, Int>> = punchRepository.allPunches().map {
+    override fun punchesPerDay(): Flow<Map<DateTime, Int>> = punchRepository.allPunches().map {
         it.groupByDay()
     }
 }

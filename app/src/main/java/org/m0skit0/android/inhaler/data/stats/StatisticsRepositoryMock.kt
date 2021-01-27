@@ -2,9 +2,9 @@ package org.m0skit0.android.inhaler.data.stats
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import org.joda.time.DateTime
 import org.m0skit0.android.inhaler.data.mock.MockData
 import org.m0skit0.android.inhaler.data.model.PunchStatisticsData
-import java.util.*
 import javax.inject.Inject
 
 class StatisticsRepositoryMock
@@ -23,7 +23,7 @@ class StatisticsRepositoryMock
         }
     }
 
-    override fun punchesPerDay(): Flow<Map<Date, Int>> = flow {
+    override fun punchesPerDay(): Flow<Map<DateTime, Int>> = flow {
         mockData.punchDataList.groupByDay().let { emit(it) }
     }
 }

@@ -1,13 +1,14 @@
 package org.m0skit0.android.inhaler.data.mock
 
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.data.model.PunchData
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 class MockData @Inject constructor() {
 
-    private val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+    private val formatter by lazy { DateTimeFormat.forPattern("dd/MM/yyyy") }
+
     val punchDataList = listOf(
         "01/01/2020".toPunchData(),
         "01/01/2020".toPunchData(),
@@ -20,7 +21,7 @@ class MockData @Inject constructor() {
         "12/12/2020".toPunchData(),
     )
 
-    private fun String.toPunchData(): PunchData = PunchData(toDate())
+    private fun String.toPunchData(): PunchData = PunchData(toDateTime())
 
-    private fun String.toDate(): Date = dateFormatter.parse(this)!!
+    private fun String.toDateTime(): DateTime = DateTime.parse(this, formatter)
 }
