@@ -29,8 +29,8 @@ infix fun List<DateTime>.generateAllDaysBetweenOldestAnd(time: DateTime): List<D
     val dayOnly = time.toDayOnly()
     if (isEmpty()) return listOf(dayOnly)
     val oldest: DateTime = minOrNull() ?: dayOnly
-    val days = this daysBetweenOldestAnd dayOnly
-    return List(days + 1) {
+    val days = (this daysBetweenOldestAnd dayOnly) + 1
+    return List(days) {
         oldest.plusDays(it)
     }
 }
