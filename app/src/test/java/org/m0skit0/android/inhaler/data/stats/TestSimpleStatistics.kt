@@ -3,6 +3,7 @@ package org.m0skit0.android.inhaler.data.stats
 import io.kotlintest.shouldBe
 import org.junit.Test
 import org.m0skit0.android.inhaler.data.model.PunchData
+import org.m0skit0.android.inhaler.data.punchDataList
 
 class TestSimpleStatistics {
 

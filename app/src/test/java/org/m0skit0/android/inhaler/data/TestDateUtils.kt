@@ -5,7 +5,6 @@ import org.joda.time.DateTime
 import org.junit.Test
 import org.m0skit0.android.inhaler.data.model.PunchData
 import org.m0skit0.android.inhaler.data.stats.monthsBetweenOldestAndNow
-import org.m0skit0.android.inhaler.data.stats.punchDataList
 
 class TestDateUtils {
 
@@ -16,17 +15,17 @@ class TestDateUtils {
 
     @Test
     fun `when calling daysBetweenOldestAnd 2 days after should return 2`() {
-        punchDataList.map { it.time } daysBetweenOldestAnd "03/01/2020".toDateTime() shouldBe 2
+        punchDateTimes daysBetweenOldestAnd "03/01/2020".toDateTime() shouldBe 2
     }
 
     @Test
     fun `when calling daysBetweenOldestAnd 1 month after should return 31`() {
-        punchDataList.map { it.time } daysBetweenOldestAnd "01/02/2020".toDateTime() shouldBe 31
+        punchDateTimes daysBetweenOldestAnd "01/02/2020".toDateTime() shouldBe 31
     }
 
     @Test
     fun `when calling daysBetweenOldestAnd 1 year after should return 366 on leap years`() {
-        punchDataList.map { it.time } daysBetweenOldestAnd "01/01/2021".toDateTime() shouldBe 366
+        punchDateTimes daysBetweenOldestAnd "01/01/2021".toDateTime() shouldBe 366
     }
 
     @Test
@@ -36,17 +35,17 @@ class TestDateUtils {
 
     @Test
     fun `when calling monthsBetweenOldestAnd 2 days after should return 0`() {
-        punchDataList.map { it.time } monthsBetweenOldestAnd "03/01/2020".toDateTime() shouldBe 0
+        punchDateTimes monthsBetweenOldestAnd "03/01/2020".toDateTime() shouldBe 0
     }
 
     @Test
     fun `when calling monthsBetweenOldestAnd 1 month after should return 1`() {
-        punchDataList.map { it.time } monthsBetweenOldestAnd "01/02/2020".toDateTime() shouldBe 1
+        punchDateTimes monthsBetweenOldestAnd "01/02/2020".toDateTime() shouldBe 1
     }
 
     @Test
     fun `when calling monthsBetweenOldestAnd 1 year after should return 12`() {
-        punchDataList.map { it.time } monthsBetweenOldestAnd "01/01/2021".toDateTime() shouldBe 12
+        punchDateTimes monthsBetweenOldestAnd "01/01/2021".toDateTime() shouldBe 12
     }
 
     @Test
@@ -56,8 +55,7 @@ class TestDateUtils {
 
     @Test
     fun `when calling generateAllDaysBetweenOldestAnd 2 days after should return list of 3 days`() {
-        punchDataList.map { it.time } generateAllDaysBetweenOldestAnd
-                "03/01/2020".toDateTime() shouldBe
+        punchDateTimes generateAllDaysBetweenOldestAnd "03/01/2020".toDateTime() shouldBe
                 listOf(
                     "01/01/2020".toDateTime(),
                     "02/01/2020".toDateTime(),
