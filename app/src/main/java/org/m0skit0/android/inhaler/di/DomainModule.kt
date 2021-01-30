@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import org.m0skit0.android.inhaler.domain.history.PunchHistoryInteractor
 import org.m0skit0.android.inhaler.domain.history.PunchHistoryInteractorImpl
+import org.m0skit0.android.inhaler.domain.punch.PunchDeleteInteractor
+import org.m0skit0.android.inhaler.domain.punch.PunchDeleteInteractorImpl
 import org.m0skit0.android.inhaler.domain.punch.PunchInteractor
 import org.m0skit0.android.inhaler.domain.punch.PunchInteractorImpl
 import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractor
@@ -32,5 +34,9 @@ abstract class DomainModule {
 
     @Binds
     @Singleton
-    abstract fun bindPunchesByDay(interactor: PunchesByDayInteractorImpl): PunchesByDayInteractor
+    abstract fun bindPunchesByDayInteractor(interactor: PunchesByDayInteractorImpl): PunchesByDayInteractor
+
+    @Binds
+    @Singleton
+    abstract fun bindPunchDeleteInteractor(interactor: PunchDeleteInteractorImpl): PunchDeleteInteractor
 }

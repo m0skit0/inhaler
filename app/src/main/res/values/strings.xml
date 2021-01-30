@@ -9,4 +9,5 @@
     <string name="statistics">Statistics</string>
     <string name="chartLabel">Punches</string>
     <string name="punch_success">Punch success</string>
+    <string name="punch_delete">Punch deleted</string>
 </resources>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -36,11 +37,9 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
         }
     }
 
-    class PunchHistoryAdapter(private val punches: List<PunchHistoryEntry>) : RecyclerView.Adapter<PunchHistoryViewHolder>() {
+    inner class PunchHistoryAdapter(private val punches: List<PunchHistoryEntry>) : RecyclerView.Adapter<PunchHistoryAdapter.PunchHistoryViewHolder>() {
 
-        companion object {
-            private val DATE_FORMATTER = DateTimeFormat.forPattern("dd-MM-yyyy EEE HH:mm")
-        }
+        private val DATE_FORMATTER = DateTimeFormat.forPattern("dd-MM-yyyy EEE HH:mm")
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PunchHistoryViewHolder =
             LayoutInflater
@@ -55,9 +54,23 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
         override fun getItemCount(): Int = punches.size
 
         private fun PunchHistoryEntry.toText(): String = DATE_FORMATTER.print(time)
-    }
 
-    class PunchHistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val entry: TextView = view.findViewById(R.id.punch_history_entry)
+        private fun onItemLongClicked(position: Int) {
+            viewModel.delete(punches[position])
+            toastDelete()
+        }
+
+        private fun toastDelete() {
+            Toast.makeText(activity, R.string.punch_delete, Toast.LENGTH_LONG).show()
+        }
+
+        inner class PunchHistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            val entry: TextView = view.findViewById<TextView>(R.id.punch_history_entry).apply {
+                setOnLongClickListener {
+                    onItemLongClicked(adapterPosition)
+                    true
+                }
+            }
+        }
     }
 }
