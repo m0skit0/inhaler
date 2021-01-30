@@ -27,7 +27,5 @@ class StatisticsRepositoryImpl
             }
         }
 
-    override fun punchesPerDay(): Flow<Map<DateTime, Int>> = punchRepository.allPunches().map {
-        it.groupByDay()
-    }
+    override fun punchesPerDay(): Flow<Map<DateTime, Int>> = TODO()
 }

@@ -23,7 +23,5 @@ class StatisticsRepositoryMock
         }
     }
 
-    override fun punchesPerDay(): Flow<Map<DateTime, Int>> = flow {
-        mockData.punchDataList.groupByDay().let { emit(it) }
-    }
+    override fun punchesPerDay(): Flow<Map<DateTime, Int>> = TODO()
 }

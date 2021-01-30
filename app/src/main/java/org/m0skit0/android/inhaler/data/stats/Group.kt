@@ -1,35 +1,23 @@
 package org.m0skit0.android.inhaler.data.stats
 
+import org.joda.time.DateTime
+import org.m0skit0.android.inhaler.data.daysBetweenOldestAndNow
 import org.m0skit0.android.inhaler.data.model.PunchData
-import java.util.*
+import org.m0skit0.android.inhaler.data.now
+import org.m0skit0.android.inhaler.data.toDayOnly
 
-fun List<PunchData>.groupByYearMonthDay(): Map<Int, Map<Int, Map<Int, List<PunchData>>>> =
-    groupByYearMonth().mapValues {
-        it.value.mapValues {
-            it.value.groupBy {
-                it.time.toCalendar()[Calendar.DAY_OF_MONTH]
-            }
+//fun List<PunchData>.punchesPerDay(): Map<DateTime, Int> {
+//    val groupedByDay = groupByDay()
+//
+//}
 
-        }
+private fun List<PunchData>.groupByDay(): Map<DateTime, Int> =
+    map { PunchData(it.time.toDayOnly()) }.groupBy { it.time }.mapValues { it.value.size }
+
+fun List<DateTime>.generateAllDaysBetweenOldestAndNow(): List<DateTime> {
+    val oldest: DateTime = if (isEmpty()) now() else minOf { it.millis }.let { DateTime(it) }
+    val days = daysBetweenOldestAndNow()
+    return List(days) {
+        oldest.plusDays(0)
     }
-
-fun List<PunchData>.groupByYearMonth(): Map<Int, Map<Int, List<PunchData>>> =
-    groupBy { it.time.toCalendar()[Calendar.YEAR] }
-        .mapValues {
-            it.value.groupBy {
-                it.time.toCalendar()[Calendar.MONTH]
-            }
-        }
-
-fun Map<Int, Map<Int, Map<Int, List<PunchData>>>>.punchesPerDay(): List<Int> =
-    mapValues { it.value.mapValues { it.value.mapValues { it.value.size } } }
-        .mapValues { it.value.mapValues { it.value.values.toList() } }
-        .flatMap { it.value.values.toList() }
-        .flatten()
-
-fun List<PunchData>.groupByDay(): Map<Date, Int> =
-    groupBy { it.time.toDayOnly() }.mapValues { it.value.size }
-
-fun Map<Int, Map<Int, List<PunchData>>>.punchesPerMonth(): List<Int> =
-    mapValues { it.value.mapValues { it.value.size } }
-        .flatMap { it.value.values.toList() }
+}
