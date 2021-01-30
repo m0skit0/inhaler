@@ -6,30 +6,37 @@ import org.joda.time.Months
 import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.data.model.PunchData
 
-fun DateTime.toDayOnly(): DateTime = withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0)
+fun DateTime.toDayOnly(): DateTime =
+    withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0).withMillisOfSecond(0)
 
 fun now(): DateTime = DateTime.now()
 
-fun List<DateTime>.daysBetweenOldestAndNow(): Int {
+infix fun List<DateTime>.daysBetweenOldestAnd(time: DateTime): Int {
     val oldest: DateTime = minOrNull()?.let { DateTime(it) } ?: DateTime.now()
-    val now = DateTime.now()
-    return Days.daysBetween(now, oldest).days
+    return Days.daysBetween(oldest, time).days
 }
 
-fun List<DateTime>.monthsBetweenOldestAndNow(): Int {
+fun List<DateTime>.daysBetweenOldestAndNow(): Int = this daysBetweenOldestAnd now()
+
+infix fun List<DateTime>.monthsBetweenOldestAnd(time: DateTime): Int {
     val oldest: DateTime = minOrNull()?.let { DateTime(it) } ?: DateTime.now()
-    val now = DateTime.now()
-    return Months.monthsBetween(now, oldest).months
+    return Months.monthsBetween(oldest, time).months
 }
 
-fun List<DateTime>.generateAllDaysBetweenOldestAndNow(): List<DateTime> {
-    if (isEmpty()) return listOf(now())
-    val oldest: DateTime = minOrNull() ?: now()
-    val days = daysBetweenOldestAndNow()
-    return List(days) {
+fun List<DateTime>.monthsBetweenOldestAndNow(): Int = this monthsBetweenOldestAnd now()
+
+infix fun List<DateTime>.generateAllDaysBetweenOldestAnd(time: DateTime): List<DateTime> {
+    val dayOnly = time.toDayOnly()
+    if (isEmpty()) return listOf(dayOnly)
+    val oldest: DateTime = minOrNull() ?: dayOnly
+    val days = this daysBetweenOldestAnd dayOnly
+    return List(days + 1) {
         oldest.plusDays(it)
     }
 }
+
+fun List<DateTime>.generateAllDaysBetweenOldestAndNow(): List<DateTime> =
+    this generateAllDaysBetweenOldestAnd now()
 
 fun String.toPunchData(): PunchData = PunchData(toDateTime())
 
