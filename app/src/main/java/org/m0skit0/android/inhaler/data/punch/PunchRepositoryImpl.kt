@@ -21,6 +21,10 @@ class PunchRepositoryImpl
         punchDao.insert(punch.toEntity())
     }
 
+    override suspend fun delete(punchData: PunchData) {
+        punchDao.delete(punchData.toEntity())
+    }
+
     override fun allPunches(): Flow<List<PunchData>> =
         punchDao.all().map { list -> list.map { it.toData() } }
 }

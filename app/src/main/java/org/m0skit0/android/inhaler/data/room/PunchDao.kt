@@ -1,6 +1,7 @@
 package org.m0skit0.android.inhaler.data.room
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
@@ -13,4 +14,7 @@ interface PunchDao {
 
     @Insert
     suspend fun insert(vararg punchEntity: PunchEntity)
+
+    @Delete
+    suspend fun delete(vararg punchEntity: PunchEntity)
 }
