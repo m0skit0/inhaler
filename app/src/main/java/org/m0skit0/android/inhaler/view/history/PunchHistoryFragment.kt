@@ -39,7 +39,7 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
     class PunchHistoryAdapter(private val punches: List<PunchHistoryEntry>) : RecyclerView.Adapter<PunchHistoryViewHolder>() {
 
         companion object {
-            private val DATE_FORMATTER = DateTimeFormat.forPattern("EEE HH:mm dd-MM-yyyy")
+            private val DATE_FORMATTER = DateTimeFormat.forPattern("dd-MM-yyyy EEE HH:mm")
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PunchHistoryViewHolder =

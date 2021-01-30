@@ -34,8 +34,7 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_statistics, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_statistics, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
