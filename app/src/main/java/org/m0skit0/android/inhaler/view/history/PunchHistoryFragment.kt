@@ -9,11 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
-import java.text.SimpleDateFormat
-import java.util.*
 
 @AndroidEntryPoint
 class PunchHistoryFragment : Fragment(), TitledFragment {
@@ -40,7 +39,7 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
     class PunchHistoryAdapter(private val punches: List<PunchHistoryEntry>) : RecyclerView.Adapter<PunchHistoryViewHolder>() {
 
         companion object {
-            private val DATE_FORMATTER = SimpleDateFormat("EEE HH:mm dd-MM-yyyy", Locale.US)
+            private val DATE_FORMATTER = DateTimeFormat.forPattern("EEE HH:mm dd-MM-yyyy")
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PunchHistoryViewHolder =
@@ -55,7 +54,7 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
 
         override fun getItemCount(): Int = punches.size
 
-        private fun PunchHistoryEntry.toText(): String = DATE_FORMATTER.format(time)
+        private fun PunchHistoryEntry.toText(): String = DATE_FORMATTER.print(time)
     }
 
     class PunchHistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {

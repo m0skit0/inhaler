@@ -10,11 +10,12 @@ import androidx.fragment.app.viewModels
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.AndroidEntryPoint
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
-import java.text.SimpleDateFormat
-import java.util.*
+import java.text.DecimalFormat
 
 @AndroidEntryPoint
 class PunchStatisticsFragment : Fragment(), TitledFragment {
@@ -60,9 +61,9 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
     private fun observeStatistics() {
         viewModel.statistics.observe(viewLifecycleOwner) {
             total.text = it.total.toString()
-            dailyAverage.text = it.dailyAverage.toString()
+            dailyAverage.text = it.dailyAverage.toText()
             dailyMaximum.text = it.dailyMaximum.toString()
-            monthlyAverage.text = it.monthlyAverage.toString()
+            monthlyAverage.text = it.monthlyAverage.toText()
         }
     }
 
@@ -76,14 +77,12 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
         }
     }
 
-    private object ChartXAxisValueFormatter : ValueFormatter() {
-        private val DATE_FORMATTER = SimpleDateFormat("dd/MM/yyyy", Locale.US)
-        override fun getFormattedValue(value: Float): String = Date(value.toLong()).run {
-            DATE_FORMATTER.format(this)
-        }
-    }
+    private fun Double.toText(): String = DecimalFormat.getNumberInstance().format(this)
 
-    private object ChartYAxisValueFormatter : ValueFormatter() {
-        override fun getFormattedValue(value: Float): String = value.toInt().toString()
+    private object ChartXAxisValueFormatter : ValueFormatter() {
+        private val DATE_FORMATTER = DateTimeFormat.forPattern("dd/MM/yyyy")
+        override fun getFormattedValue(value: Float): String = DateTime(value.toLong()).run {
+            DATE_FORMATTER.print(this)
+        }
     }
 }

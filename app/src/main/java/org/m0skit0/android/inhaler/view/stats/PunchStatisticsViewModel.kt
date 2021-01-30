@@ -8,11 +8,11 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.coroutines.flow.map
+import org.joda.time.DateTime
 import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractor
 import org.m0skit0.android.inhaler.domain.stats.PunchesByDayInteractor
-import java.util.*
 
 class PunchStatisticsViewModel
 @ViewModelInject constructor(
@@ -37,7 +37,7 @@ class PunchStatisticsViewModel
 
     private val chartLabel by lazy { InhalerApplication.instance.getString(R.string.chartLabel) }
 
-    private fun Map.Entry<Date, Int>.toEntry(): Entry = Entry(key.toFloat(), value.toFloat())
+    private fun Map.Entry<DateTime, Int>.toEntry(): Entry = Entry(key.toFloat(), value.toFloat())
 
-    private fun Date.toFloat(): Float = time.toFloat()
+    private fun DateTime.toFloat(): Float = millis.toFloat()
 }

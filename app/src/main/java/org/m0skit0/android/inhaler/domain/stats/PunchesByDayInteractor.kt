@@ -1,8 +1,8 @@
 package org.m0skit0.android.inhaler.domain.stats
 
 import kotlinx.coroutines.flow.Flow
-import java.util.*
+import org.joda.time.DateTime
 
 interface PunchesByDayInteractor {
-    fun punchesByDay(): Flow<Map<Date, Int>>
+    fun punchesByDay(): Flow<Map<DateTime, Int>>
 }

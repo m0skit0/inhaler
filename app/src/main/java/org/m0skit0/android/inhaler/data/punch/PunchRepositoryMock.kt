@@ -11,7 +11,7 @@ class PunchRepositoryMock
     private val mockData: MockData
 ) : PunchRepository {
 
-    override suspend fun punch(punch: PunchData) {
+    override suspend fun punch() {
         // Does nothing
     }
 
