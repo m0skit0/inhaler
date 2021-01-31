@@ -5,5 +5,6 @@ import org.m0skit0.android.inhaler.data.model.PunchData
 
 interface PunchRepository {
     suspend fun punch()
+    suspend fun delete(punchData: PunchData)
     fun allPunches(): Flow<List<PunchData>>
 }
