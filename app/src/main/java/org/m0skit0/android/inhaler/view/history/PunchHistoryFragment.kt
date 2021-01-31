@@ -37,6 +37,15 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
         }
     }
 
+    private fun onItemLongClicked(punch: PunchHistoryEntry) {
+        viewModel.delete(punch)
+        toastDelete()
+    }
+
+    private fun toastDelete() {
+        Toast.makeText(activity, R.string.punch_delete, Toast.LENGTH_LONG).show()
+    }
+
     inner class PunchHistoryAdapter(private val punches: List<PunchHistoryEntry>) : RecyclerView.Adapter<PunchHistoryAdapter.PunchHistoryViewHolder>() {
 
         private val DATE_FORMATTER = DateTimeFormat.forPattern("dd-MM-yyyy EEE HH:mm")
@@ -56,12 +65,7 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
         private fun PunchHistoryEntry.toText(): String = DATE_FORMATTER.print(time)
 
         private fun onItemLongClicked(position: Int) {
-            viewModel.delete(punches[position])
-            toastDelete()
-        }
-
-        private fun toastDelete() {
-            Toast.makeText(activity, R.string.punch_delete, Toast.LENGTH_LONG).show()
+            onItemLongClicked(punches[position])
         }
 
         inner class PunchHistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
