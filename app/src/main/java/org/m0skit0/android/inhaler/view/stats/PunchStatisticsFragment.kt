@@ -8,15 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.AndroidEntryPoint
-import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
-import java.text.DecimalFormat
 
+// TODO Fix for landscape mode: put stats and graph side by side
 @AndroidEntryPoint
 class PunchStatisticsFragment : Fragment(), TitledFragment {
 
@@ -54,15 +51,15 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
     }
 
     private fun LineChart.configure(): LineChart = apply {
-        xAxis.valueFormatter = ChartXAxisValueFormatter
+        xAxis.valueFormatter = PunchStatisticsViewModel.ChartXAxisValueFormatter
     }
 
     private fun observeStatistics() {
         viewModel.statistics.observe(viewLifecycleOwner) {
-            total.text = it.total.toString()
-            dailyAverage.text = it.dailyAverage.toText()
-            dailyMaximum.text = it.dailyMaximum.toString()
-            monthlyAverage.text = it.monthlyAverage.toText()
+            total.text = it.total
+            dailyAverage.text = it.dailyAverage
+            dailyMaximum.text = it.dailyMaximum
+            monthlyAverage.text = it.monthlyAverage
         }
     }
 
@@ -73,15 +70,6 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
                 data.notifyDataChanged()
                 notifyDataSetChanged()
             }
-        }
-    }
-
-    private fun Double.toText(): String = DecimalFormat.getNumberInstance().format(this)
-
-    private object ChartXAxisValueFormatter : ValueFormatter() {
-        private val DATE_FORMATTER = DateTimeFormat.forPattern("dd/MM/yyyy")
-        override fun getFormattedValue(value: Float): String = DateTime(value.toLong()).run {
-            DATE_FORMATTER.print(this)
         }
     }
 }
