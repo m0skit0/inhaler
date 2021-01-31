@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.m0skit0.android.inhaler.InhalerApplication
@@ -22,7 +21,7 @@ import java.util.concurrent.TimeUnit
 class PunchFragment : Fragment(), TitledFragment {
 
     companion object {
-        private val DISABLED_INTERVAL = TimeUnit.MINUTES.toMillis(2)
+        private val DISABLED_INTERVAL = TimeUnit.SECONDS.toMillis(10)
     }
 
     override val title: String by lazy { InhalerApplication.instance.getString(R.string.punch) }
@@ -37,10 +36,10 @@ class PunchFragment : Fragment(), TitledFragment {
     }
 
     private fun View.initializeViews() {
-        findViewById<Button>(R.id.punch).setOnClickListener {
+        findViewById<Button>(R.id.punch).setOnClickListener { punchButton ->
             viewModel.onPunchClicked()
             toastSuccess()
-            disableForAWhile()
+            punchButton.disableForAWhile()
         }
     }
 
@@ -48,10 +47,9 @@ class PunchFragment : Fragment(), TitledFragment {
         Toast.makeText(activity, R.string.punch_success, Toast.LENGTH_LONG).show()
     }
 
-    // TODO This is not working :S
     private fun View.disableForAWhile() {
         isEnabled = false
-        lifecycleScope.launch(Dispatchers.Main) {
+        lifecycleScope.launch {
             delay(DISABLED_INTERVAL)
             isEnabled = true
         }
