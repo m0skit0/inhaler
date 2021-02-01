@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Inhaler</string>
+    <string name="punch">Registrar Inhalación</string>
+    <string name="average_daily">Media diaria</string>
+    <string name="maximum">Máximo diario</string>
+    <string name="history">Hisórico</string>
+    <string name="average_monthly">Media mensual</string>
+    <string name="total">Total inhalaciones</string>
+    <string name="statistics">Estadísticas</string>
+    <string name="chartLabel">Inhalaciones</string>
+    <string name="punch_success">Registro exitoso</string>
+    <string name="punch_delete">Registro borrado</string>
+    <string name="delete_history_entry_confirmation">¿Está seguro que desea borrar el registro?</string>
+    <string name="delete_confirmation_title">Confirmación de borrado</string>
+    <string name="punch_delete_cancel">Borrado cancelado</string>
+</resources>
