@@ -44,7 +44,7 @@ class PunchStatisticsViewModel
     private fun DateTime.toFloat(): Float = millis.toFloat()
 
     object ChartXAxisValueFormatter : ValueFormatter() {
-        private val DATE_FORMATTER = DateTimeFormat.forPattern("dd/MM/yyyy")
+        private val DATE_FORMATTER = DateTimeFormat.forPattern("dd/MM")
         override fun getFormattedValue(value: Float): String = DateTime(value.toLong()).run {
             DATE_FORMATTER.print(this)
         }
