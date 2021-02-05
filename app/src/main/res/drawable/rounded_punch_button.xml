@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#eeffffff" />
+            <corners android:bottomRightRadius="90dp"
+                android:bottomLeftRadius="90dp"
+                android:topRightRadius="90dp"
+                android:topLeftRadius="90dp"/>
+            <stroke android:width="10dp" android:color="#ff5500aa" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_launcher"
+        android:bottom="50dp"
+        android:left="50dp"
+        android:right="50dp"
+        android:top="50dp"/>
+</layer-list>
+
+
