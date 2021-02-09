@@ -13,13 +13,15 @@ android {
         applicationId "org.m0skit0.android.inhaler"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 10
+        versionName "1.1"
     }
 
     buildTypes {
         debug {}
-        release {}
+        release {
+            // TODO Signing configuration
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
