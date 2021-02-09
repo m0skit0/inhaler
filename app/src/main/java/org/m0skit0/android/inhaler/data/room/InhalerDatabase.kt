@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 
 private const val VERSION = 1
 
-@Database(entities = [PunchEntity::class], version = VERSION)
+@Database(entities = [PunchEntity::class], version = VERSION, exportSchema = false)
 abstract class InhalerDatabase : RoomDatabase() {
 
     companion object {
