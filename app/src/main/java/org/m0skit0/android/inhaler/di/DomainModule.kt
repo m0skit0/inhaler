@@ -3,7 +3,7 @@ package org.m0skit0.android.inhaler.di
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import org.m0skit0.android.inhaler.domain.history.PunchHistoryInteractor
 import org.m0skit0.android.inhaler.domain.history.PunchHistoryInteractorImpl
 import org.m0skit0.android.inhaler.domain.punch.PunchDeleteInteractor
@@ -17,7 +17,7 @@ import org.m0skit0.android.inhaler.domain.stats.PunchesByDayInteractorImpl
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class DomainModule {
 
     @Binds

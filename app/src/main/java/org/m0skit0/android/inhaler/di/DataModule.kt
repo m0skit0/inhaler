@@ -6,8 +6,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import org.m0skit0.android.inhaler.data.punch.PunchRepository
 import org.m0skit0.android.inhaler.data.punch.PunchRepositoryImpl
 import org.m0skit0.android.inhaler.data.punch.PunchRepositoryMock
@@ -24,7 +24,7 @@ const val NAMED_STATISTICS_REPOSITORY_MOCK = "NAMED_STATISTICS_REPOSITORY_MOCK"
 const val NAMED_STATISTICS_REPOSITORY_REAL = "NAMED_STATISTICS_REPOSITORY_REAL"
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class DataModuleBind {
 
     @Binds
@@ -49,7 +49,7 @@ abstract class DataModuleBind {
 }
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 class DataModuleProvider {
     @Provides
     @Singleton
