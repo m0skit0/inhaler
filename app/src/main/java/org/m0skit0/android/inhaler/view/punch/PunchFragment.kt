@@ -49,9 +49,11 @@ class PunchFragment : Fragment(), TitledFragment {
 
     private fun View.disableForAWhile() {
         isEnabled = false
+        alpha = .25f
         lifecycleScope.launch {
             delay(DISABLED_INTERVAL)
             isEnabled = true
+            alpha = 1f
         }
     }
 }
