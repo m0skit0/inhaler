@@ -33,8 +33,8 @@ class PagerFragment : Fragment() {
 
         private val fragments: Array<Fragment> = arrayOf(
             PunchFragment(),
+            PunchStatisticsFragment(),
             PunchHistoryFragment(),
-            PunchStatisticsFragment()
         )
 
         override fun getCount(): Int = fragments.size
