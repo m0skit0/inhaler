@@ -8,11 +8,11 @@
         android:name="org.m0skit0.android.inhaler.view.PagerFragment"
         android:label="PagerFragment" >
         <action
-            android:id="@+id/action_pagerFragment_to_hilt_PunchDetailsFragment"
-            app:destination="@id/hilt_PunchDetailsFragment" />
+            android:id="@+id/action_pagerFragment_to_punchDetailsFragment"
+            app:destination="@id/punchDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/hilt_PunchDetailsFragment"
-        android:name="org.m0skit0.android.inhaler.view.punchdetails.Hilt_PunchDetailsFragment"
-        android:label="Hilt_PunchDetailsFragment" />
+        android:id="@+id/punchDetailsFragment"
+        android:name="org.m0skit0.android.inhaler.view.punchdetails.PunchDetailsFragment"
+        android:label="PunchDetailsFragment" />
 </navigation>

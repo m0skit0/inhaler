@@ -44,7 +44,7 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
 
     private fun PunchHistoryEntry.navigateToPunchDetails() {
         PunchDetailsFragment.params(toPunchDetails()).let { params ->
-            findNavController().navigate(R.id.hilt_PunchDetailsFragment, params)
+            findNavController().navigate(R.id.punchDetailsFragment, params)
         }
     }
 

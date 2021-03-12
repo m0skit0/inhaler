@@ -33,7 +33,7 @@ class PunchDetailsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_punch_details, container)
+    ): View? = inflater.inflate(R.layout.fragment_punch_details, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setPunchDetails()
