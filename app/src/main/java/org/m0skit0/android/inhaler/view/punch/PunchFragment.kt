@@ -12,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
 import java.util.concurrent.TimeUnit
@@ -24,7 +23,7 @@ class PunchFragment : Fragment(), TitledFragment {
         private val DISABLED_INTERVAL = TimeUnit.SECONDS.toMillis(10)
     }
 
-    override val title: String by lazy { InhalerApplication.instance.getString(R.string.punch) }
+    override val titleId = R.string.punch
 
     private val viewModel: PunchViewModel by viewModels()
 

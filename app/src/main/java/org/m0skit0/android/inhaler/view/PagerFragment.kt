@@ -30,7 +30,7 @@ class PagerFragment : Fragment() {
         }
     }
 
-    class PagerFragmentAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    inner class PagerFragmentAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         private val fragments: Array<Fragment> = arrayOf(
             PunchFragment(),
@@ -42,6 +42,7 @@ class PagerFragment : Fragment() {
 
         override fun getItem(position: Int): Fragment = fragments[position]
 
-        override fun getPageTitle(position: Int): CharSequence = (fragments[position] as TitledFragment).title
+        override fun getPageTitle(position: Int): CharSequence =
+            (fragments[position] as TitledFragment).titleId.let { activity?.getString(it) ?: "" }
     }
 }

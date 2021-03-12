@@ -1,5 +1,6 @@
 package org.m0skit0.android.inhaler.view.stats
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -8,10 +9,10 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.map
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
-import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractor
 import org.m0skit0.android.inhaler.domain.stats.PunchesByDayInteractor
@@ -21,6 +22,7 @@ import javax.inject.Inject
 class PunchStatisticsViewModel
 @Inject
 constructor(
+    @ApplicationContext private val context: Context,
     statisticsInteractor: PunchStatisticsInteractor,
     punchesByDayInteractor: PunchesByDayInteractor,
 ) : ViewModel() {
@@ -40,7 +42,7 @@ constructor(
                 }
         }.asLiveData()
 
-    private val chartLabel by lazy { InhalerApplication.instance.getString(R.string.chartLabel) }
+    private val chartLabel by lazy { context.getString(R.string.chartLabel) }
 
     private fun Map.Entry<DateTime, Int>.toEntry(): Entry = Entry(key.toFloat(), value.toFloat())
 

@@ -12,14 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import org.joda.time.format.DateTimeFormat
-import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
 
 @AndroidEntryPoint
 class PunchHistoryFragment : Fragment(), TitledFragment {
 
-    override val title: String by lazy { InhalerApplication.instance.getString(R.string.history) }
+    override val titleId: Int = R.string.history
 
     private val viewModel: PunchHistoryViewModel by viewModels()
 
