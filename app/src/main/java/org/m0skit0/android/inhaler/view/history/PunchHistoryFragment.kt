@@ -56,7 +56,7 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
     }
 
     private fun toastDeleteSuccess() {
-        Toast.makeText(activity, R.string.punch_delete, Toast.LENGTH_LONG).show()
+        Toast.makeText(activity, R.string.punch_deleted, Toast.LENGTH_LONG).show()
     }
 
     private fun toastDeleteCancel() {
