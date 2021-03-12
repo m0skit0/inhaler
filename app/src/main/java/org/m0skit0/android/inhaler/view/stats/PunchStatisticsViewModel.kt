@@ -15,9 +15,12 @@ import org.m0skit0.android.inhaler.InhalerApplication
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractor
 import org.m0skit0.android.inhaler.domain.stats.PunchesByDayInteractor
+import javax.inject.Inject
 
 @HiltViewModel
-class PunchStatisticsViewModel constructor(
+class PunchStatisticsViewModel
+@Inject
+constructor(
     statisticsInteractor: PunchStatisticsInteractor,
     punchesByDayInteractor: PunchesByDayInteractor,
 ) : ViewModel() {

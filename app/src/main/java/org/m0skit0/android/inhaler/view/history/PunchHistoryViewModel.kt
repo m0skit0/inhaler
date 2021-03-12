@@ -9,9 +9,12 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.m0skit0.android.inhaler.domain.history.PunchHistoryInteractor
 import org.m0skit0.android.inhaler.domain.punch.PunchDeleteInteractor
+import javax.inject.Inject
 
 @HiltViewModel
-class PunchHistoryViewModel constructor(
+class PunchHistoryViewModel
+@Inject
+constructor(
     punchInteractor: PunchHistoryInteractor,
     private val deleteInteractor: PunchDeleteInteractor,
 ) : ViewModel() {
