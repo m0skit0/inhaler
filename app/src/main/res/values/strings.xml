@@ -16,4 +16,6 @@
     <string name="date_label">Date</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 </resources>
