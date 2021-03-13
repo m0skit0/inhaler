@@ -73,8 +73,14 @@ class PunchEditFragment : Fragment() {
 
     private fun View.setSaveButtonClickListener() {
         findViewById<Button>(R.id.save).setOnClickListener {
-            viewModel.edit(punchDetails)
+            val newPunch = editedPunch()
+            viewModel.edit(punchDetails, newPunch)
             toastSaveSuccess()
+            findNavController().popBackStack()
         }
+    }
+
+    private fun editedPunch(): PunchEditDetails {
+        TODO()
     }
 }
