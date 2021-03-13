@@ -10,10 +10,13 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.data.now
+import org.m0skit0.android.inhaler.view.punchedit.PunchEditFragment
+import org.m0skit0.android.inhaler.view.punchedit.toPunchEditDetails
 import org.m0skit0.android.inhaler.view.toast
 
 @AndroidEntryPoint
@@ -82,7 +85,9 @@ class PunchDetailsFragment : Fragment() {
 
     private fun View.setEditButtonClickListener() {
         findViewById<Button>(R.id.edit).setOnClickListener {
-            // TODO
+            PunchEditFragment.params(punchDetails.toPunchEditDetails()).let { params ->
+                findNavController().navigate(R.id.punchEditFragment, params)
+            }
         }
     }
 }
