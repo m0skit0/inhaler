@@ -39,7 +39,7 @@ class PunchEditFragment : Fragment() {
     }
 
     private fun setPunchDetails() {
-        arguments?.getParcelable(KEY_DETAILS) ?: PunchEditDetails(now()).let {
+        (arguments?.getParcelable(KEY_DETAILS) ?: PunchEditDetails(now())).let {
             viewModel.punchDetails(it)
         }
     }
