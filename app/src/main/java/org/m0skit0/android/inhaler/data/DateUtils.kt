@@ -1,5 +1,7 @@
 package org.m0skit0.android.inhaler.data
 
+import android.content.Context
+import android.text.format.DateFormat.is24HourFormat
 import org.joda.time.DateTime
 import org.joda.time.Days
 import org.joda.time.Months
@@ -42,3 +44,5 @@ fun String.toPunchData(): PunchData = PunchData(toDateTime())
 
 private val FORMATTER by lazy { DateTimeFormat.forPattern("dd/MM/yyyy") }
 fun String.toDateTime(): DateTime = DateTime.parse(this, FORMATTER)
+
+fun Context.is24hFormat(): Boolean = is24HourFormat(this)

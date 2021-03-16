@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.joda.time.format.DateTimeFormat
@@ -25,9 +25,7 @@ class PunchEditFragment : Fragment() {
         fun params(punchDetails: PunchEditDetails): Bundle = bundleOf(KEY_DETAILS to punchDetails)
     }
 
-    private lateinit var punchDetails: PunchEditDetails
-
-    private val viewModel: PunchEditViewModel by viewModels()
+    private val viewModel: PunchEditViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +39,9 @@ class PunchEditFragment : Fragment() {
     }
 
     private fun setPunchDetails() {
-        punchDetails = arguments?.getParcelable(KEY_DETAILS) ?: PunchEditDetails(now())
+        arguments?.getParcelable(KEY_DETAILS) ?: PunchEditDetails(now()).let {
+            viewModel.punchDetails(it)
+        }
     }
 
     private fun View.initializeViews() {
@@ -52,7 +52,9 @@ class PunchEditFragment : Fragment() {
     }
 
     private fun View.setPunchDetailInformation() {
-        findViewById<TextView>(R.id.date).text = DATE_TIME_FORMATTER.print(punchDetails.time)
+        viewModel.punchDetails().time.let {
+            findViewById<TextView>(R.id.date).text = DATE_TIME_FORMATTER.print(it)
+        }
     }
 
     private fun View.setCancelButtonClickListener() {
@@ -63,7 +65,7 @@ class PunchEditFragment : Fragment() {
 
     private fun View.setDateClickListener() {
         findViewById<TextView>(R.id.date).setOnClickListener {
-            // TODO
+            PunchDatePicker().show(parentFragmentManager, null)
         }
     }
 
@@ -73,14 +75,9 @@ class PunchEditFragment : Fragment() {
 
     private fun View.setSaveButtonClickListener() {
         findViewById<Button>(R.id.save).setOnClickListener {
-            val newPunch = editedPunch()
-            viewModel.edit(punchDetails, newPunch)
+            viewModel.replace()
             toastSaveSuccess()
             findNavController().popBackStack()
         }
-    }
-
-    private fun editedPunch(): PunchEditDetails {
-        TODO()
     }
 }

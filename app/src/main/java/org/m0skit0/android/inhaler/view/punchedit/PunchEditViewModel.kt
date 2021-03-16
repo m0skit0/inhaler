@@ -16,10 +16,37 @@ constructor(
     private val punchDeleteInteractor: PunchDeleteInteractor,
 ) : ViewModel() {
 
-    fun edit(oldPunch: PunchEditDetails, newPunch: PunchEditDetails) {
+    private lateinit var oldPunchDetails: PunchEditDetails
+    private lateinit var newPunchDetails: PunchEditDetails
+
+    fun punchDetails(punchDetails: PunchEditDetails) {
+        oldPunchDetails = punchDetails
+        newPunchDetails = punchDetails
+    }
+
+    fun punchDetails(): PunchEditDetails = newPunchDetails
+
+    fun replace() {
         viewModelScope.launch {
-            punchDeleteInteractor.delete(oldPunch.toPunch())
-            punchInteractor.punch(newPunch.toPunch())
+            punchDeleteInteractor.delete(oldPunchDetails.toPunch())
+            punchInteractor.punch(newPunchDetails.toPunch())
         }
+    }
+
+    fun newDate(year: Int, month: Int, dayOfMonth: Int) {
+        val newPunchTime = newPunchDetails
+            .time
+            .withYear(year)
+            .withMonthOfYear(month)
+            .withDayOfMonth(dayOfMonth)
+        newPunchDetails = PunchEditDetails(newPunchTime)
+    }
+
+    fun newTime(hourOfDay: Int, minutes: Int) {
+        val newPunchTime = newPunchDetails
+            .time
+            .withHourOfDay(hourOfDay)
+            .withMinuteOfHour(minutes)
+        newPunchDetails = PunchEditDetails(newPunchTime)
     }
 }
