@@ -1,6 +1,6 @@
 package org.m0skit0.android.inhaler.view.stats
 
-import org.m0skit0.android.inhaler.domain.model.PunchStatistics
+import org.m0skit0.android.inhaler.domain.stats.PunchStatistics
 import java.text.DecimalFormat
 
 data class PunchStatisticsView(

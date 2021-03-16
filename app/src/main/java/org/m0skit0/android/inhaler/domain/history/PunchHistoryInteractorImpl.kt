@@ -4,8 +4,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.m0skit0.android.inhaler.BuildConfig
 import org.m0skit0.android.inhaler.data.punch.PunchRepository
-import org.m0skit0.android.inhaler.domain.model.Punch
-import org.m0skit0.android.inhaler.domain.model.toPunch
+import org.m0skit0.android.inhaler.domain.punch.Punch
+import org.m0skit0.android.inhaler.domain.punch.toPunch
 import javax.inject.Inject
 import javax.inject.Named
 

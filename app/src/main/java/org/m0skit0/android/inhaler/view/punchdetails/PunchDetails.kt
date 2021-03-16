@@ -3,7 +3,7 @@ package org.m0skit0.android.inhaler.view.punchdetails
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import org.joda.time.DateTime
-import org.m0skit0.android.inhaler.domain.model.Punch
+import org.m0skit0.android.inhaler.domain.punch.Punch
 import org.m0skit0.android.inhaler.view.history.PunchHistoryEntry
 
 @Parcelize
