@@ -1,16 +1,14 @@
 package org.m0skit0.android.inhaler.view.punchdetails
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.R
@@ -20,7 +18,7 @@ import org.m0skit0.android.inhaler.view.punchedit.toPunchEditDetails
 import org.m0skit0.android.inhaler.view.toast
 
 @AndroidEntryPoint
-class PunchDetailsFragment : Fragment() {
+class PunchDetailsFragment : DialogFragment() {
 
     companion object {
         private val DATE_TIME_FORMATTER = DateTimeFormat.forPattern("dd-MM-yyyy EEE HH:mm")
@@ -32,16 +30,24 @@ class PunchDetailsFragment : Fragment() {
 
     private lateinit var punchDetails: PunchDetails
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_punch_details, container, false)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = run {
         setPunchDetails()
-        view.initializeViews()
+        val view = activity?.layoutInflater?.inflate(R.layout.fragment_punch_details, null)?.apply { initializeViews() }
+        AlertDialog.Builder(activity)
+            .setView(view)
+            .create()
     }
+
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? = inflater.inflate(R.layout.fragment_punch_details, container, false)
+
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        setPunchDetails()
+//        view.initializeViews()
+//    }
 
     private fun setPunchDetails() {
         punchDetails = arguments?.getParcelable(KEY_DETAILS) ?: PunchDetails(now())
@@ -86,7 +92,7 @@ class PunchDetailsFragment : Fragment() {
     private fun View.setEditButtonClickListener() {
         findViewById<Button>(R.id.edit).setOnClickListener {
             PunchEditFragment.params(punchDetails.toPunchEditDetails()).let { params ->
-                findNavController().navigate(R.id.punchEditFragment, params)
+//                findNavController().navigate(R.id.punchEditFragment, params)
             }
         }
     }

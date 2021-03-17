@@ -11,16 +11,8 @@
             android:id="@+id/action_pagerFragment_to_punchDetailsFragment"
             app:destination="@id/punchDetailsFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/punchDetailsFragment"
         android:name="org.m0skit0.android.inhaler.view.punchdetails.PunchDetailsFragment"
-        android:label="PunchDetailsFragment" >
-        <action
-            android:id="@+id/action_punchDetailsFragment_to_punchEditFragment"
-            app:destination="@id/punchEditFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/punchEditFragment"
-        android:name="org.m0skit0.android.inhaler.view.punchedit.PunchEditFragment"
-        android:label="PunchEditFragment" />
+        android:label="PunchDetailsFragment" />
 </navigation>

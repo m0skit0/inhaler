@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,7 +17,7 @@ import org.m0skit0.android.inhaler.data.now
 import org.m0skit0.android.inhaler.view.toast
 
 @AndroidEntryPoint
-class PunchEditFragment : Fragment() {
+class PunchEditFragment : DialogFragment() {
 
     companion object {
         private val DATE_TIME_FORMATTER = DateTimeFormat.forPattern("dd-MM-yyyy EEE HH:mm")

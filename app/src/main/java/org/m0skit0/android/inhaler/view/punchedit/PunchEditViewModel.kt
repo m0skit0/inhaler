@@ -6,6 +6,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.m0skit0.android.inhaler.domain.punch.PunchDeleteInteractor
 import org.m0skit0.android.inhaler.domain.punch.PunchInteractor
+import org.m0skit0.android.inhaler.view.punchdetails.PunchDetails
+import org.m0skit0.android.inhaler.view.punchdetails.toPunch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -13,11 +15,17 @@ class PunchEditViewModel
 @Inject
 constructor(
     private val punchInteractor: PunchInteractor,
-    private val punchDeleteInteractor: PunchDeleteInteractor,
+    private val deleteInteractor: PunchDeleteInteractor,
 ) : ViewModel() {
 
     private lateinit var oldPunchDetails: PunchEditDetails
     private lateinit var newPunchDetails: PunchEditDetails
+
+    fun delete(punch: PunchDetails) {
+        viewModelScope.launch {
+            deleteInteractor.delete(punch.toPunch())
+        }
+    }
 
     fun punchDetails(punchDetails: PunchEditDetails) {
         oldPunchDetails = punchDetails
@@ -28,7 +36,7 @@ constructor(
 
     fun replace() {
         viewModelScope.launch {
-            punchDeleteInteractor.delete(oldPunchDetails.toPunch())
+            deleteInteractor.delete(oldPunchDetails.toPunch())
             punchInteractor.punch(newPunchDetails.toPunch())
         }
     }
