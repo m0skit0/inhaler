@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
-import org.m0skit0.android.inhaler.view.punchdetails.PunchDetailsFragment
+import org.m0skit0.android.inhaler.view.punchdetails.PunchDetailsDialogFragment
 import org.m0skit0.android.inhaler.view.punchdetails.toPunchDetails
 
 @AndroidEntryPoint
@@ -43,7 +43,7 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
     }
 
     private fun PunchHistoryEntry.navigateToPunchDetails() {
-        PunchDetailsFragment.params(toPunchDetails()).let { params ->
+        PunchDetailsDialogFragment.params(toPunchDetails()).let { params ->
             findNavController().navigate(R.id.punchDetailsFragment, params)
         }
     }

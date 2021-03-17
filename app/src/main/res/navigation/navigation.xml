@@ -13,6 +13,6 @@
     </fragment>
     <dialog
         android:id="@+id/punchDetailsFragment"
-        android:name="org.m0skit0.android.inhaler.view.punchdetails.PunchDetailsFragment"
+        android:name="org.m0skit0.android.inhaler.view.punchdetails.PunchDetailsDialogFragment"
         android:label="PunchDetailsFragment" />
 </navigation>

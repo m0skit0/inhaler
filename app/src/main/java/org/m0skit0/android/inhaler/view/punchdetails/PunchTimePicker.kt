@@ -1,4 +1,4 @@
-package org.m0skit0.android.inhaler.view.punchedit
+package org.m0skit0.android.inhaler.view.punchdetails
 
 import android.app.Dialog
 import android.app.TimePickerDialog
@@ -12,7 +12,7 @@ import org.m0skit0.android.inhaler.data.is24hFormat
 @AndroidEntryPoint
 class PunchTimePicker : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
-    private val viewModel: PunchEditViewModel by activityViewModels()
+    private val viewModel: PunchDetailsViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         viewModel.punchDetails().time.run {
