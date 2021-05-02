@@ -4,8 +4,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.m0skit0.android.inhaler.BuildConfig
 import org.m0skit0.android.inhaler.data.stats.StatisticsRepository
-import org.m0skit0.android.inhaler.domain.model.PunchStatistics
-import org.m0skit0.android.inhaler.domain.model.toPunchStatistics
 import javax.inject.Inject
 import javax.inject.Named
 

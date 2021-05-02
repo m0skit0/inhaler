@@ -21,6 +21,10 @@ class PunchRepositoryImpl
         punchDao.insert(punch.toEntity())
     }
 
+    override suspend fun punch(punchData: PunchData) {
+        punchDao.insert(punchData.toEntity())
+    }
+
     override suspend fun delete(punchData: PunchData) {
         punchDao.delete(punchData.toEntity())
     }

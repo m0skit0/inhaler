@@ -11,6 +11,7 @@ import com.github.mikephil.charting.charts.LineChart
 import dagger.hilt.android.AndroidEntryPoint
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
+import org.m0skit0.android.inhaler.view.isDarkModeOn
 
 // TODO Fix for landscape mode: put stats and graph side by side
 @AndroidEntryPoint
@@ -50,7 +51,13 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
     }
 
     private fun LineChart.configure(): LineChart = apply {
-        xAxis.valueFormatter = PunchStatisticsViewModel.ChartXAxisValueFormatter
+        with(xAxis) {
+            valueFormatter = PunchStatisticsViewModel.ChartXAxisValueFormatter
+            textColor = color()
+        }
+        with(axisLeft) {
+            textColor = color()
+        }
     }
 
     private fun observeStatistics() {
@@ -71,4 +78,7 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
             }
         }
     }
+
+    private fun color(): Int =
+        if (isDarkModeOn()) resources.getColor(R.color.white) else resources.getColor(R.color.black)
 }

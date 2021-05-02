@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -13,8 +14,8 @@ android {
         applicationId "org.m0skit0.android.inhaler"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 10
-        versionName "1.1"
+        versionCode 13
+        versionName "1.3"
     }
 
     buildTypes {
@@ -51,7 +52,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
 
-    def room_version = "2.2.6"
+    def room_version = "2.3.0"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
@@ -64,11 +65,11 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle"
 
-    def lifecycle_version = "2.2.0"
+    def lifecycle_version = "2.3.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
-    def nav_version = "2.3.3"
+    def nav_version = "2.3.5"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 

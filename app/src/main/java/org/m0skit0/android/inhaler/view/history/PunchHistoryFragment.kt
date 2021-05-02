@@ -1,19 +1,20 @@
 package org.m0skit0.android.inhaler.view.history
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
+import org.m0skit0.android.inhaler.view.punchdetails.PunchDetailsDialogFragment
+import org.m0skit0.android.inhaler.view.punchdetails.toPunchDetails
 
 @AndroidEntryPoint
 class PunchHistoryFragment : Fragment(), TitledFragment {
@@ -38,29 +39,13 @@ class PunchHistoryFragment : Fragment(), TitledFragment {
     }
 
     private fun onItemLongClicked(punch: PunchHistoryEntry) {
-        showDeleteConfirmationDialog({
-            toastDeleteCancel()
-        }) {
-            viewModel.delete(punch)
-            toastDeleteSuccess()
+        punch.navigateToPunchDetails()
+    }
+
+    private fun PunchHistoryEntry.navigateToPunchDetails() {
+        PunchDetailsDialogFragment.params(toPunchDetails()).let { params ->
+            findNavController().navigate(R.id.punchDetailsFragment, params)
         }
-    }
-
-    private fun showDeleteConfirmationDialog(cancelBlock: () -> Unit, okBlock: () -> Unit) {
-        AlertDialog.Builder(activity)
-            .setMessage(R.string.delete_history_entry_confirmation)
-            .setTitle(R.string.delete_confirmation_title)
-            .setPositiveButton(android.R.string.ok) { _, _ -> okBlock() }
-            .setNegativeButton(android.R.string.cancel) { _, _ -> cancelBlock() }
-            .show()
-    }
-
-    private fun toastDeleteSuccess() {
-        Toast.makeText(activity, R.string.punch_delete, Toast.LENGTH_LONG).show()
-    }
-
-    private fun toastDeleteCancel() {
-        Toast.makeText(activity, R.string.punch_delete_cancel, Toast.LENGTH_LONG).show()
     }
 
     inner class PunchHistoryAdapter(private val punches: List<PunchHistoryEntry>) : RecyclerView.Adapter<PunchHistoryAdapter.PunchHistoryViewHolder>() {

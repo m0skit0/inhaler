@@ -10,7 +10,12 @@ class PunchInteractorImpl
     @Named(BuildConfig.NAMED_PUNCH_REPOSITORY)
     private val repository: PunchRepository
 ) : PunchInteractor {
+
     override suspend fun punch() {
         repository.punch()
+    }
+
+    override suspend fun punch(punch: Punch) {
+        repository.punch(punch.toData())
     }
 }

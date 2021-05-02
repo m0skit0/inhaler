@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/pagerFragment"
         android:name="org.m0skit0.android.inhaler.view.PagerFragment"
-        android:label="PagerFragment" />
+        android:label="PagerFragment" >
+        <action
+            android:id="@+id/action_pagerFragment_to_punchDetailsFragment"
+            app:destination="@id/punchDetailsFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/punchDetailsFragment"
+        android:name="org.m0skit0.android.inhaler.view.punchdetails.PunchDetailsDialogFragment"
+        android:label="PunchDetailsFragment" />
 </navigation>

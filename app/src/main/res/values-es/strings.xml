@@ -10,8 +10,14 @@
     <string name="statistics">Estadísticas</string>
     <string name="chartLabel">Inhalaciones</string>
     <string name="punch_success">Registro exitoso</string>
-    <string name="punch_delete">Registro borrado</string>
+    <string name="punch_deleted">Registro borrado</string>
     <string name="delete_history_entry_confirmation">¿Está seguro que desea borrar el registro?</string>
     <string name="delete_confirmation_title">Confirmación de borrado</string>
     <string name="punch_delete_cancel">Borrado cancelado</string>
+    <string name="date_label">Fecha</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Borrar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="punch_edit_success">Registro editado con éxito</string>
 </resources>

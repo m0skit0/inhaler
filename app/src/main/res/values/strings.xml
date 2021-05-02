@@ -9,8 +9,14 @@
     <string name="statistics">Statistics</string>
     <string name="chartLabel">Punches</string>
     <string name="punch_success">Punch success</string>
-    <string name="punch_delete">Punch deleted</string>
+    <string name="punch_deleted">Punch deleted</string>
     <string name="delete_history_entry_confirmation">Are you sure want to delete this item?</string>
     <string name="delete_confirmation_title">Deletion confirmation</string>
     <string name="punch_delete_cancel">Punch deletion canceled</string>
+    <string name="date_label">Date</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="punch_edit_success">Punch edited successfully</string>
 </resources>

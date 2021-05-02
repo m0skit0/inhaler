@@ -15,6 +15,10 @@ class PunchRepositoryMock
         // Does nothing
     }
 
+    override suspend fun punch(punchData: PunchData) {
+        // Does nothing
+    }
+
     override suspend fun delete(punchData: PunchData) {
         // Does nothing
     }

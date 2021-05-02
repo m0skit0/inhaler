@@ -1,4 +1,4 @@
-package org.m0skit0.android.inhaler.domain.model
+package org.m0skit0.android.inhaler.domain.stats
 
 import org.m0skit0.android.inhaler.data.model.PunchStatisticsData
 
