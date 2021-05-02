@@ -1,6 +1,5 @@
 package org.m0skit0.android.inhaler.view.stats
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,12 +26,6 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
     private lateinit var dailyMaximum: TextView
     private lateinit var monthlyAverage: TextView
     private lateinit var chart: LineChart
-    private var isDarkMode = false
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        isDarkMode = newConfig.isDarkModeOn()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,6 +55,9 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
             valueFormatter = PunchStatisticsViewModel.ChartXAxisValueFormatter
             textColor = color()
         }
+        with(axisLeft) {
+            textColor = color()
+        }
     }
 
     private fun observeStatistics() {
@@ -84,5 +80,5 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
     }
 
     private fun color(): Int =
-        if (isDarkMode) resources.getColor(R.color.white) else resources.getColor(R.color.black)
+        if (isDarkModeOn()) resources.getColor(R.color.white) else resources.getColor(R.color.black)
 }
