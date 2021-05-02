@@ -57,6 +57,7 @@ class PunchDetailsDialogFragment : DialogFragment() {
             showDeleteConfirmationDialog(::toastDeleteCancel) {
                 viewModel.delete()
                 toastDeleteSuccess()
+                dismiss()
             }
         }
     }
