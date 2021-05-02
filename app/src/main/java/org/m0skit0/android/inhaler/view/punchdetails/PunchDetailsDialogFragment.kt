@@ -2,6 +2,7 @@ package org.m0skit0.android.inhaler.view.punchdetails
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -9,7 +10,7 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
+import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
 import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.R
@@ -28,12 +29,21 @@ class PunchDetailsDialogFragment : DialogFragment() {
 
     private val viewModel: PunchDetailsViewModel by activityViewModels()
 
+    private var dialogLayout: View? = null
+
+    private lateinit var punchDetailsObserver: Observer<PunchDetails>
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = run {
         setPunchDetails()
-        val view = activity?.layoutInflater?.inflate(R.layout.fragment_punch_details, null)?.apply { initializeViews() }
+        dialogLayout = activity?.layoutInflater?.inflate(R.layout.fragment_punch_details, null)?.apply { initializeViews() }
         AlertDialog.Builder(activity)
-            .setView(view)
+            .setView(dialogLayout)
             .create()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        dialogLayout?.observePunchDetailInformation()
     }
 
     private fun setPunchDetails() {
@@ -41,15 +51,21 @@ class PunchDetailsDialogFragment : DialogFragment() {
     }
 
     private fun View.initializeViews() {
-        setPunchDetailInformation()
         setDeleteButtonClickListener()
         setSaveButtonClickListener()
         setDateClickListener()
     }
 
-    private fun View.setPunchDetailInformation() {
-        val punchDetails = viewModel.punchDetails()
-        findViewById<TextView>(R.id.date).text = DATE_TIME_FORMATTER.print(punchDetails.time)
+    private fun View.observePunchDetailInformation() {
+        punchDetailsObserver = Observer<PunchDetails> {
+            findViewById<TextView>(R.id.date).text = DATE_TIME_FORMATTER.print(it.time)
+        }
+        viewModel.punchDetails.observeForever(punchDetailsObserver)
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        viewModel.punchDetails.removeObserver(punchDetailsObserver)
     }
 
     private fun View.setDeleteButtonClickListener() {
@@ -87,7 +103,7 @@ class PunchDetailsDialogFragment : DialogFragment() {
         findViewById<Button>(R.id.save).setOnClickListener {
             viewModel.replace()
             toastSaveSuccess()
-            findNavController().popBackStack()
+            dismiss()
         }
     }
 

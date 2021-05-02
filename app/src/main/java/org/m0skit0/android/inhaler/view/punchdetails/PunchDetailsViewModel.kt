@@ -1,9 +1,12 @@
 package org.m0skit0.android.inhaler.view.punchdetails
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.m0skit0.android.inhaler.data.now
 import org.m0skit0.android.inhaler.domain.punch.PunchDeleteInteractor
 import org.m0skit0.android.inhaler.domain.punch.PunchInteractor
 import javax.inject.Inject
@@ -16,8 +19,17 @@ constructor(
     private val deleteInteractor: PunchDeleteInteractor,
 ) : ViewModel() {
 
+    private val _punchDetails = MutableLiveData<PunchDetails>()
+    val punchDetails: LiveData<PunchDetails> by lazy {
+        _punchDetails
+    }
+
     private lateinit var oldPunchDetails: PunchDetails
-    private lateinit var newPunchDetails: PunchDetails
+    private var newPunchDetails: PunchDetails = PunchDetails(now())
+        set(value) {
+            field = value
+            _punchDetails.postValue(newPunchDetails)
+        }
 
     fun delete() {
         viewModelScope.launch {
