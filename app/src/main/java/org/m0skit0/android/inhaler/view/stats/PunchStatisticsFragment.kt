@@ -1,5 +1,6 @@
 package org.m0skit0.android.inhaler.view.stats
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.github.mikephil.charting.charts.LineChart
 import dagger.hilt.android.AndroidEntryPoint
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
+import org.m0skit0.android.inhaler.view.isDarkModeOn
 
 // TODO Fix for landscape mode: put stats and graph side by side
 @AndroidEntryPoint
@@ -25,6 +27,12 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
     private lateinit var dailyMaximum: TextView
     private lateinit var monthlyAverage: TextView
     private lateinit var chart: LineChart
+    private var isDarkMode = false
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        isDarkMode = newConfig.isDarkModeOn()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +58,10 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
     }
 
     private fun LineChart.configure(): LineChart = apply {
-        xAxis.valueFormatter = PunchStatisticsViewModel.ChartXAxisValueFormatter
+        with(xAxis) {
+            valueFormatter = PunchStatisticsViewModel.ChartXAxisValueFormatter
+            textColor = color()
+        }
     }
 
     private fun observeStatistics() {
@@ -71,4 +82,7 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
             }
         }
     }
+
+    private fun color(): Int =
+        if (isDarkMode) resources.getColor(R.color.white) else resources.getColor(R.color.black)
 }
