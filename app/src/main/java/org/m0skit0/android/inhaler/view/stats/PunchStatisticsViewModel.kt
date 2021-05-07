@@ -11,6 +11,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.take
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.R
@@ -27,6 +28,10 @@ constructor(
     punchesByDayInteractor: PunchesByDayInteractor,
 ) : ViewModel() {
 
+    companion object {
+        private val CHART_HISTORIC_SIZE = 5
+    }
+
     val statistics: LiveData<PunchStatisticsView> by lazy {
         statisticsInteractor.statistics().map { stats ->
             stats.toPunchStatisticsView()
@@ -34,6 +39,7 @@ constructor(
     }
 
     val punchesByDay: LiveData<LineData> = punchesByDayInteractor.punchesByDay()
+        .take(CHART_HISTORIC_SIZE)
         .map { punchesByDay ->
             punchesByDay.entries
                 .map { it.toEntry() }

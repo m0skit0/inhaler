@@ -16,8 +16,9 @@ constructor(
 ) : ViewModel() {
 
     val punches: LiveData<List<PunchHistoryEntry>> by lazy {
-        punchInteractor.history().map { list ->
-            list.map { it.toPunchHistoryEntry() }
-        }.asLiveData()
+        punchInteractor.history()
+            .map { list ->
+                list.map { it.toPunchHistoryEntry() }
+            }.asLiveData()
     }
 }
