@@ -27,6 +27,10 @@ constructor(
     punchesByDayInteractor: PunchesByDayInteractor,
 ) : ViewModel() {
 
+    companion object {
+        private const val CHART_HISTORIC_SIZE = 30
+    }
+
     val statistics: LiveData<PunchStatisticsView> by lazy {
         statisticsInteractor.statistics().map { stats ->
             stats.toPunchStatisticsView()
@@ -36,6 +40,8 @@ constructor(
     val punchesByDay: LiveData<LineData> = punchesByDayInteractor.punchesByDay()
         .map { punchesByDay ->
             punchesByDay.entries
+                .sortedBy { it.key }
+                .takeLast(CHART_HISTORIC_SIZE)
                 .map { it.toEntry() }
                 .let { entry ->
                     LineDataSet(entry, chartLabel).let { LineData(it) }
