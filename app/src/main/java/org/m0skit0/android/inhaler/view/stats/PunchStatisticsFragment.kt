@@ -74,6 +74,7 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
             with(chart) {
                 data = it
                 data.notifyDataChanged()
+                invalidate()
                 notifyDataSetChanged()
             }
         }
