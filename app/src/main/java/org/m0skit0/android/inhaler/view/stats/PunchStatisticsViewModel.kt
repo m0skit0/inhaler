@@ -40,7 +40,8 @@ constructor(
     val punchesByDay: LiveData<LineData> = punchesByDayInteractor.punchesByDay()
         .map { punchesByDay ->
             punchesByDay.entries
-                .take(CHART_HISTORIC_SIZE)
+                .sortedBy { it.key }
+                .takeLast(CHART_HISTORIC_SIZE)
                 .map { it.toEntry() }
                 .let { entry ->
                     LineDataSet(entry, chartLabel).let { LineData(it) }
