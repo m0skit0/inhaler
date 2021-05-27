@@ -5,5 +5,5 @@ import org.m0skit0.android.inhaler.data.room.PunchEntity
 
 data class PunchData(val time: DateTime)
 
-fun PunchData.toEntity() = PunchEntity(time.millis)
+fun PunchData.toEntity(inhalerId: Long) = PunchEntity(time.millis, inhalerId)
 fun PunchEntity.toData() = PunchData(DateTime(timestamp))
