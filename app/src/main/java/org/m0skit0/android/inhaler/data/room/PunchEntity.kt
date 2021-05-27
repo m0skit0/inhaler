@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "punch")
 data class PunchEntity(
-        @PrimaryKey
-        val timestamp: Long
+    @PrimaryKey
+    val timestamp: Long,
+    val inhaler: Long
 )
