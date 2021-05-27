@@ -10,6 +10,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.m0skit0.android.inhaler.data.inhaler.InhalerRepository
 import org.m0skit0.android.inhaler.data.inhaler.InhalerRepositoryImpl
+import org.m0skit0.android.inhaler.data.inhaler.InhalerRepositoryMock
 import org.m0skit0.android.inhaler.data.punch.PunchRepository
 import org.m0skit0.android.inhaler.data.punch.PunchRepositoryImpl
 import org.m0skit0.android.inhaler.data.punch.PunchRepositoryMock

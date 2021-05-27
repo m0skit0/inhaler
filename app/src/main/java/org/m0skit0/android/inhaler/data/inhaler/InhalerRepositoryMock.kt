@@ -1,19 +1,23 @@
 package org.m0skit0.android.inhaler.data.inhaler
 
-class InhalerRepositoryMock : InhalerRepository {
-    override suspend fun current(): InhalerData {
-        TODO("Not yet implemented")
-    }
+import org.m0skit0.android.inhaler.data.mock.MockData
+import javax.inject.Inject
 
-    override suspend fun all(): List<InhalerData> {
-        TODO("Not yet implemented")
-    }
+class InhalerRepositoryMock
+@Inject
+constructor(
+    private val mockData: MockData
+) : InhalerRepository {
 
-    override suspend fun punchesForCurrent(): Int {
-        TODO("Not yet implemented")
-    }
+    override suspend fun current(): InhalerData = mockData.inhalerDataList.last()
 
-    override suspend fun punchesFor(inhaler: InhalerData): Int {
-        TODO("Not yet implemented")
-    }
+    override suspend fun all(): List<InhalerData> = mockData.inhalerDataList
+
+    override suspend fun punchesForCurrent(): Int = mockData.punchDataList.filter {
+        it.time >= current().startTime
+    }.size
+
+    override suspend fun punchesFor(inhaler: InhalerData): Int = mockData.punchDataList.filter {
+        it.time >= inhaler.startTime
+    }.size
 }

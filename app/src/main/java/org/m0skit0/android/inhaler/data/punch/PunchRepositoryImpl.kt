@@ -12,18 +12,22 @@ class PunchRepositoryImpl
 ) : PunchRepository {
 
     private val punchDao = database.punchDao()
+    private val inhalerDao = database.inhalerDao()
+    private val inhalerId: Long
+        get() = inhalerDao.current().id
 
     override suspend fun punch() {
         val punch = PunchData(now())
-        punchDao.insert(punch.toEntity())
+        punchDao.insert(punch.toEntity(inhalerId))
     }
 
     override suspend fun punch(punchData: PunchData) {
-        punchDao.insert(punchData.toEntity())
+        val inhalerId = inhalerDao.current().id
+        punchDao.insert(punchData.toEntity(inhalerId))
     }
 
     override suspend fun delete(punchData: PunchData) {
-        punchDao.delete(punchData.toEntity())
+        punchDao.delete(punchData.toEntity(inhalerId))
     }
 
     override fun allPunches(): Flow<List<PunchData>> =
