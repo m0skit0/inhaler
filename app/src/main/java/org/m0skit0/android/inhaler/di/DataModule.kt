@@ -8,6 +8,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import org.m0skit0.android.inhaler.data.inhaler.InhalerRepository
+import org.m0skit0.android.inhaler.data.inhaler.InhalerRepositoryImpl
 import org.m0skit0.android.inhaler.data.punch.PunchRepository
 import org.m0skit0.android.inhaler.data.punch.PunchRepositoryImpl
 import org.m0skit0.android.inhaler.data.punch.PunchRepositoryMock
@@ -23,6 +25,8 @@ const val NAMED_PUNCH_REPOSITORY_MOCK = "NAMED_PUNCH_REPOSITORY_MOCK"
 const val NAMED_PUNCH_REPOSITORY_REAL = "NAMED_PUNCH_REPOSITORY_REAL"
 const val NAMED_STATISTICS_REPOSITORY_MOCK = "NAMED_STATISTICS_REPOSITORY_MOCK"
 const val NAMED_STATISTICS_REPOSITORY_REAL = "NAMED_STATISTICS_REPOSITORY_REAL"
+const val NAMED_INHALER_REPOSITORY_REAL = "NAMED_INHALER_REPOSITORY_REAL"
+const val NAMED_INHALER_REPOSITORY_MOCK = "NAMED_INHALER_REPOSITORY_MOCK"
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -47,6 +51,16 @@ abstract class DataModuleBind {
     @Singleton
     @Named(NAMED_STATISTICS_REPOSITORY_MOCK)
     abstract fun bindStatisticsRepositoryMock(repository: StatisticsRepositoryMock): StatisticsRepository
+
+    @Binds
+    @Singleton
+    @Named(NAMED_INHALER_REPOSITORY_REAL)
+    abstract fun bindInhalerRepository(repository: InhalerRepositoryImpl): InhalerRepository
+
+    @Binds
+    @Singleton
+    @Named(NAMED_INHALER_REPOSITORY_MOCK)
+    abstract fun bindInhalerRepositoryMock(repository: InhalerRepositoryMock): InhalerRepository
 }
 
 @Module

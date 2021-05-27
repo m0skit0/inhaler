@@ -1,7 +1,7 @@
 package org.m0skit0.android.inhaler.domain.punch
 
 import org.joda.time.DateTime
-import org.m0skit0.android.inhaler.data.model.PunchData
+import org.m0skit0.android.inhaler.data.punch.PunchData
 
 data class Punch(val time: DateTime)
 

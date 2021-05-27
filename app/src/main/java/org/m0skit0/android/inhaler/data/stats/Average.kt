@@ -1,8 +1,8 @@
 package org.m0skit0.android.inhaler.data.stats
 
 import org.m0skit0.android.inhaler.data.daysBetweenOldestAndNow
-import org.m0skit0.android.inhaler.data.model.PunchData
 import org.m0skit0.android.inhaler.data.monthsBetweenOldestAndNow
+import org.m0skit0.android.inhaler.data.punch.PunchData
 import org.m0skit0.android.inhaler.data.toDayOnly
 
 fun List<PunchData>.dailyAverage(): Double =

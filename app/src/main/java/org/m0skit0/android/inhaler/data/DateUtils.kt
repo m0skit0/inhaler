@@ -6,7 +6,7 @@ import org.joda.time.DateTime
 import org.joda.time.Days
 import org.joda.time.Months
 import org.joda.time.format.DateTimeFormat
-import org.m0skit0.android.inhaler.data.model.PunchData
+import org.m0skit0.android.inhaler.data.punch.PunchData
 
 fun DateTime.toDayOnly(): DateTime =
     withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0).withMillisOfSecond(0)

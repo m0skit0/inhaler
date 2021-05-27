@@ -1,6 +1,6 @@
 package org.m0skit0.android.inhaler.domain.stats
 
-import org.m0skit0.android.inhaler.data.model.PunchStatisticsData
+import org.m0skit0.android.inhaler.data.punch.PunchStatisticsData
 
 data class PunchStatistics(
     val total: Int,

@@ -8,7 +8,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.m0skit0.android.inhaler.data.model.PunchData
+import org.m0skit0.android.inhaler.data.punch.PunchData
 import org.m0skit0.android.inhaler.data.punch.PunchRepository
 import org.m0skit0.android.inhaler.data.stats.*
 

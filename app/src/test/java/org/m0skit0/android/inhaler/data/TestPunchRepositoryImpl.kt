@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import org.m0skit0.android.inhaler.data.model.PunchData
-import org.m0skit0.android.inhaler.data.model.toEntity
+import org.m0skit0.android.inhaler.data.punch.PunchData
 import org.m0skit0.android.inhaler.data.punch.PunchRepositoryImpl
+import org.m0skit0.android.inhaler.data.punch.toEntity
 import org.m0skit0.android.inhaler.data.room.InhalerDatabase
 import org.m0skit0.android.inhaler.data.room.PunchDao
 import org.m0skit0.android.inhaler.data.room.PunchEntity

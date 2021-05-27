@@ -13,4 +13,5 @@ abstract class InhalerDatabase : RoomDatabase() {
     }
 
     abstract fun punchDao(): PunchDao
+    abstract fun inhalerDao(): InhalerDao
 }
