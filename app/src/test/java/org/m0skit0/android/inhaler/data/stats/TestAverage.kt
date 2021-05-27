@@ -6,7 +6,7 @@ import org.joda.time.DateTimeZone
 import org.joda.time.Days
 import org.joda.time.Months
 import org.junit.Test
-import org.m0skit0.android.inhaler.data.model.PunchData
+import org.m0skit0.android.inhaler.data.punch.PunchData
 import org.m0skit0.android.inhaler.data.punchDataList
 
 class TestAverage {

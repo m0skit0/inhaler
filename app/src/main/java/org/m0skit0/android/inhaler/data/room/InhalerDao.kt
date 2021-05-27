@@ -4,13 +4,12 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface InhalerDao {
 
     @Query("SELECT * FROM inhaler ORDER BY startTimestamp DESC")
-    fun all(): Flow<List<InhalerEntity>>
+    fun all(): List<InhalerEntity>
 
     @Query("SELECT COUNT(0) FROM punch WHERE inhaler = :inhalerEntityId")
     fun punchesCount(inhalerEntityId: Long): Int

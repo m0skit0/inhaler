@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.map
 import org.joda.time.DateTime
 import org.m0skit0.android.inhaler.BuildConfig
 import org.m0skit0.android.inhaler.data.generateAllDaysBetweenOldestAndNow
-import org.m0skit0.android.inhaler.data.model.PunchData
-import org.m0skit0.android.inhaler.data.model.PunchStatisticsData
+import org.m0skit0.android.inhaler.data.punch.PunchData
 import org.m0skit0.android.inhaler.data.punch.PunchRepository
+import org.m0skit0.android.inhaler.data.punch.PunchStatisticsData
 import org.m0skit0.android.inhaler.data.toDayOnly
 import javax.inject.Inject
 import javax.inject.Named

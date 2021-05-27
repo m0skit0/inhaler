@@ -1,7 +1,7 @@
 package org.m0skit0.android.inhaler.data
 
 import org.joda.time.DateTime
-import org.m0skit0.android.inhaler.data.model.PunchData
+import org.m0skit0.android.inhaler.data.punch.PunchData
 
 val punchDateTimes: List<DateTime> = listOf(
     "01/01/2020".toDateTime(),

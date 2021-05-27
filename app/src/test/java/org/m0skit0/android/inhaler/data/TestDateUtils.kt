@@ -3,7 +3,7 @@ package org.m0skit0.android.inhaler.data
 import io.kotlintest.shouldBe
 import org.joda.time.DateTime
 import org.junit.Test
-import org.m0skit0.android.inhaler.data.model.PunchData
+import org.m0skit0.android.inhaler.data.punch.PunchData
 import org.m0skit0.android.inhaler.data.stats.monthsBetweenOldestAndNow
 
 class TestDateUtils {

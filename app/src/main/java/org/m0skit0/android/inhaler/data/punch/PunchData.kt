@@ -1,4 +1,4 @@
-package org.m0skit0.android.inhaler.data.model
+package org.m0skit0.android.inhaler.data.punch
 
 import org.joda.time.DateTime
 import org.m0skit0.android.inhaler.data.room.PunchEntity

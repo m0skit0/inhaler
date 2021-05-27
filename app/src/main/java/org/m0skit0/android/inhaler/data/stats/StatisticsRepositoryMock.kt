@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.joda.time.DateTime
 import org.m0skit0.android.inhaler.data.mock.MockData
-import org.m0skit0.android.inhaler.data.model.PunchStatisticsData
+import org.m0skit0.android.inhaler.data.punch.PunchStatisticsData
 import javax.inject.Inject
 
 class StatisticsRepositoryMock
