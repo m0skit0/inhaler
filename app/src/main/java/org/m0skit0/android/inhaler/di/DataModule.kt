@@ -12,6 +12,7 @@ import org.m0skit0.android.inhaler.data.punch.PunchRepository
 import org.m0skit0.android.inhaler.data.punch.PunchRepositoryImpl
 import org.m0skit0.android.inhaler.data.punch.PunchRepositoryMock
 import org.m0skit0.android.inhaler.data.room.InhalerDatabase
+import org.m0skit0.android.inhaler.data.room.MIGRATION_1_2
 import org.m0skit0.android.inhaler.data.stats.StatisticsRepository
 import org.m0skit0.android.inhaler.data.stats.StatisticsRepositoryImpl
 import org.m0skit0.android.inhaler.data.stats.StatisticsRepositoryMock
@@ -59,5 +60,7 @@ class DataModuleProvider {
                 applicationContext,
                 InhalerDatabase::class.java,
                 InhalerDatabase.NAME
-            ).build()
+            )
+            .addMigrations(MIGRATION_1_2)
+            .build()
 }
