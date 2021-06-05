@@ -37,10 +37,12 @@ android {
         mock {
             buildConfigField 'String', 'NAMED_PUNCH_REPOSITORY', '"NAMED_PUNCH_REPOSITORY_MOCK"'
             buildConfigField 'String', 'NAMED_STATISTICS_REPOSITORY', '"NAMED_STATISTICS_REPOSITORY_MOCK"'
+            buildConfigField 'String', 'NAMED_INHALER_REPOSITORY', '"NAMED_INHALER_REPOSITORY_MOCK"'
         }
         real {
             buildConfigField 'String', 'NAMED_PUNCH_REPOSITORY', '"NAMED_PUNCH_REPOSITORY_REAL"'
             buildConfigField 'String', 'NAMED_STATISTICS_REPOSITORY', '"NAMED_STATISTICS_REPOSITORY_REAL"'
+            buildConfigField 'String', 'NAMED_INHALER_REPOSITORY', '"NAMED_INHALER_REPOSITORY_REAL"'
         }
     }
 
