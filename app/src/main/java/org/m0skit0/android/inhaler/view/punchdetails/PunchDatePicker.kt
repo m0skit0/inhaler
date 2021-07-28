@@ -19,13 +19,13 @@ class PunchDatePicker : DialogFragment(), DatePickerDialog.OnDateSetListener {
                 this@PunchDatePicker.requireActivity(),
                 this@PunchDatePicker,
                 year,
-                monthOfYear,
+                monthOfYear - 1,
                 dayOfMonth
             )
         }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        viewModel.newDate(year, month, dayOfMonth)
+        viewModel.newDate(year, month + 1, dayOfMonth)
         PunchTimePicker().show(parentFragmentManager, null)
     }
 }
