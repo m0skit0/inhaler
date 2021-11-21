@@ -7,17 +7,16 @@ import androidx.lifecycle.asLiveData
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.map
 import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.domain.stats.PunchStatisticsInteractor
 import org.m0skit0.android.inhaler.domain.stats.PunchesByDayInteractor
 import javax.inject.Inject
 
+// TODO Context leak?
 @HiltViewModel
 class PunchStatisticsViewModel
 @Inject
@@ -53,11 +52,4 @@ constructor(
     private fun Map.Entry<DateTime, Int>.toEntry(): Entry = Entry(key.toFloat(), value.toFloat())
 
     private fun DateTime.toFloat(): Float = millis.toFloat()
-
-    object ChartXAxisValueFormatter : ValueFormatter() {
-        private val DATE_FORMATTER = DateTimeFormat.forPattern("dd/MM")
-        override fun getFormattedValue(value: Float): String = DateTime(value.toLong()).run {
-            DATE_FORMATTER.print(this)
-        }
-    }
 }

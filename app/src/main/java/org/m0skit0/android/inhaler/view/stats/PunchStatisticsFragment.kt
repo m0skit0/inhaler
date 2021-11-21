@@ -8,10 +8,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 import org.m0skit0.android.inhaler.R
 import org.m0skit0.android.inhaler.view.TitledFragment
 import org.m0skit0.android.inhaler.view.isDarkModeOn
+import org.m0skit0.android.inhaler.view.toast
 
 // TODO Fix for landscape mode: put stats and graph side by side
 @AndroidEntryPoint
@@ -53,12 +60,13 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
     private fun LineChart.configure(): LineChart = apply {
         scaleY = 1.0f
         with(xAxis) {
-            valueFormatter = PunchStatisticsViewModel.ChartXAxisValueFormatter
+            valueFormatter = ChartXAxisValueFormatter
             textColor = color()
         }
         with(axisLeft) {
             textColor = color()
         }
+        configureOnChartValueSelectedListener()
     }
 
     private fun observeStatistics() {
@@ -81,6 +89,29 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
         }
     }
 
+    private fun LineChart.configureOnChartValueSelectedListener() {
+        setOnChartValueSelectedListener(
+            object : OnChartValueSelectedListener {
+                override fun onValueSelected(entry: Entry?, highlight: Highlight?) {
+                    entry?.run {
+                        val date = x.let { ChartXAxisValueFormatter.getFormattedValue(it) }
+                        val value = y.toInt()
+                        toast("$date \u2192 $value")
+                    }
+                }
+                override fun onNothingSelected() {
+                    // Does nothing
+                }
+            })
+    }
+
     private fun color(): Int =
         if (isDarkModeOn()) resources.getColor(R.color.white) else resources.getColor(R.color.black)
+
+    private object ChartXAxisValueFormatter : ValueFormatter() {
+        private val DATE_FORMATTER = DateTimeFormat.forPattern("dd/MM")
+        override fun getFormattedValue(value: Float): String = DateTime(value.toLong()).run {
+            DATE_FORMATTER.print(this)
+        }
+    }
 }
