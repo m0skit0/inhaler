@@ -51,6 +51,7 @@ class PunchStatisticsFragment : Fragment(), TitledFragment {
     }
 
     private fun LineChart.configure(): LineChart = apply {
+        scaleY = 1.0f
         with(xAxis) {
             valueFormatter = PunchStatisticsViewModel.ChartXAxisValueFormatter
             textColor = color()
