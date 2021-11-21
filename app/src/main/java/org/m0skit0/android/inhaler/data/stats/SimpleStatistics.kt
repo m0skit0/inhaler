@@ -9,4 +9,4 @@ fun List<PunchData>.dailyMaximum(): Int =
     map { PunchData(it.time.toDayOnly()) }
         .groupBy { it.time }
         .map { it.value.size }
-        .maxOf { it }
+        .maxOfOrNull { it } ?: 0

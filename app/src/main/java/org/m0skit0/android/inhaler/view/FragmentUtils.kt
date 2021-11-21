@@ -9,5 +9,9 @@ fun Fragment.toast(@StringRes id: Int) {
     Toast.makeText(activity, id, Toast.LENGTH_LONG).show()
 }
 
+fun Fragment.toast(message: String) {
+    Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
+}
+
 fun Fragment.isDarkModeOn(): Boolean =
     (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES

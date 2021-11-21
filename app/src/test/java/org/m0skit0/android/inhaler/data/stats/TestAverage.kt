@@ -21,8 +21,8 @@ class TestAverage {
         val oldestPunch = DateTime(punchDataList[0].time, DateTimeZone.UTC)
         val now = DateTime.now()
         punchDataList.dailyAverage() shouldBe punchDataList.size.toDouble() / Days.daysBetween(
+            oldestPunch,
             now,
-            oldestPunch
         ).days
     }
 
@@ -36,8 +36,8 @@ class TestAverage {
         val oldestPunch = DateTime(punchDataList[0].time, DateTimeZone.UTC)
         val now = DateTime.now()
         punchDataList.monthlyAverage() shouldBe punchDataList.size.toDouble() / Months.monthsBetween(
+            oldestPunch,
             now,
-            oldestPunch
         ).months
     }
 }
